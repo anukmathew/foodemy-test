@@ -6,20 +6,12 @@ import { getMDXPage } from '#app/utils/custom-utils/mdx.server.ts'
 import LegalPage from './+components/legalPage'
 import { type Route } from './+types/$slug'
 
-export async function loader({ params, request }: Route.LoaderArgs) {
+export async function loader({ params }: Route.LoaderArgs) {
 	const { slug } = params
 	invariant(slug, 'An id is required')
 	const page = await getMDXPage({ dir: 'legal', slug })
-	const ipAddress =
-		request.headers.get('x-forwarded-for') ||
-		request.headers.get('remote-addr') ||
-		'unknown'
-	const timestamp = new Date().toISOString()
-	const userIdentifier = `${ipAddress}  | ${timestamp}`
-	console.log(userIdentifier)
 	return {
 		page,
-		userIdentifier,
 		headers: {
 			'Cache-Control': 'public, max-age=3600',
 		},
@@ -37,8 +29,8 @@ export const meta: Route.MetaFunction = ({ loaderData }) => [
 	},
 ]
 
-export default function Blog() {
-	const { page, userIdentifier } = useLoaderData<typeof loader>()
+export default function Legal() {
+	const { page } = useLoaderData<typeof loader>()
 	const Component = useMemo(() => getMDXComponent(page.code), [page.code])
 	return (
 		<>
