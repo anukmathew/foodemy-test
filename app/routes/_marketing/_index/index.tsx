@@ -24,7 +24,7 @@ export default function Index() {
 		<div>
 			<Hero />
 			<TrustedBy />
-			{/* <Testimonials /> */}
+			<Testimonials />
 			<WhatIsFygate />
 			<WhyUs />
 			<AboutFoodemy />

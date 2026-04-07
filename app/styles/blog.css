@@ -1,0 +1,29 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@utility prose {
+	--tw-prose-headings: var(--color-info);
+	--tw-prose-body: var(--color-primary-foreground);
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: var(--color-muted-foreground);
+		font-family: var(--font-display);
+	}
+
+	h1 {
+		font-weight: 800;
+	}
+
+	h2 {
+		font-weight: 600;
+	}
+
+	a {
+		text-decoration: dashed underline var(--color-muted-foreground);
+	}
+}

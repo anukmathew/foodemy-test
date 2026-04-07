@@ -1,19 +1,18 @@
 import { motion } from 'motion/react'
 import { type ReactNode } from 'react'
 import { CardStack } from '#app/components/aceternity/card-stack.tsx'
-import { WobbleCard } from '#app/components/aceternity/wobble-card.tsx'
 import { cn } from '#app/utils/misc.tsx'
 import { StudyMaterialsStack } from '../+components/studyMaterialsStack'
 
 function FeatureCard({
-	containerClassName,
+	className,
 	textClassName,
 	title,
 	description,
 	visual,
 	inlineVisual = false,
 }: {
-	containerClassName?: string
+	className?: string
 	textClassName?: string
 	title: string
 	description: string
@@ -42,22 +41,37 @@ function FeatureCard({
 	)
 
 	return (
-		<WobbleCard
-			containerClassName={containerClassName}
-			className="max-md:px-4 max-md:py-8"
-		>
-			{inlineVisual ? (
-				<div className="flex items-center justify-between">
-					<div className="max-w-xs">{textContent}</div>
-					<div className="hidden lg:block">{visual}</div>
-				</div>
-			) : (
-				<>
-					<div className="max-w-sm">{textContent}</div>
-					{visual && <div className="hidden lg:block">{visual}</div>}
-				</>
+		<section
+			className={cn(
+				'relative mx-auto w-full overflow-hidden rounded-2xl bg-indigo-800',
+				className,
 			)}
-		</WobbleCard>
+		>
+			<div
+				className="relative h-full overflow-hidden bg-[radial-gradient(88%_100%_at_top,rgba(255,255,255,0.5),rgba(255,255,255,0))] sm:mx-0 sm:rounded-2xl"
+				style={{
+					boxShadow:
+						'0 10px 32px rgba(34, 42, 53, 0.12), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.05), 0 4px 6px rgba(34, 42, 53, 0.08), 0 24px 108px rgba(47, 48, 55, 0.10)',
+				}}
+			>
+				<motion.div className={cn('h-full px-4 py-20 sm:px-10')}>
+					<Noise />
+					<div className="max-md:px-4 max-md:py-8">
+						{inlineVisual ? (
+							<div className="flex items-center justify-between">
+								<div className="max-w-xs">{textContent}</div>
+								<div className="hidden lg:block">{visual}</div>
+							</div>
+						) : (
+							<>
+								<div className="max-w-sm">{textContent}</div>
+								{visual && <div className="hidden lg:block">{visual}</div>}
+							</>
+						)}
+					</div>
+				</motion.div>
+			</div>
+		</section>
 	)
 }
 
@@ -79,7 +93,7 @@ export default function WhyUs() {
 				</h2>
 				<div className="mx-auto grid w-full max-w-full grid-cols-1 gap-4 lg:grid-cols-4 xl:grid-cols-3">
 					<FeatureCard
-						containerClassName="col-span-1 lg:col-span-4 xl:col-span-2 h-full bg-secondary text-secondary lg:min-h-[300px]"
+						className="bg-secondary text-secondary lg:mn-h-75 col-span-1 h-full lg:col-span-4 xl:col-span-2"
 						textClassName="text-secondary-foreground"
 						title="High Quality Video Lectures"
 						description="Our expert faculty brings their wealth of knowledge and teaching experience to deliver high-quality video lectures."
@@ -87,19 +101,19 @@ export default function WhyUs() {
 						inlineVisual
 					/>
 					<FeatureCard
-						containerClassName="col-span-1 lg:col-span-2 xl:col-span-1 bg-secondary"
+						className="bg-secondary col-span-1 lg:col-span-2 xl:col-span-1"
 						textClassName="text-secondary-foreground"
 						title="Solved Previous Year Questions"
 						description="Access to solved previous year questions helps you understand the exam's pattern and gain insight into the frequently asked topics"
 					/>
 					<FeatureCard
-						containerClassName="col-span-1 lg:col-span-2 xl:col-span-1 bg-secondary"
+						className="bg-secondary col-span-1 lg:col-span-2 xl:col-span-1"
 						textClassName="text-secondary-foreground"
 						title="Mentorship from subject experts"
 						description="We believe in providing personalized attention. Benefit from mentorship from our experienced subject experts"
 					/>
 					<FeatureCard
-						containerClassName="col-span-1 lg:col-span-4 xl:col-span-2 relative bg-secondary lg:min-h-[300px] xl:min-h-[300px]"
+						className="bg-secondary relative col-span-1 lg:col-span-4 lg:min-h-75 xl:col-span-2 xl:min-h-75"
 						textClassName="text-secondary-foreground"
 						title="Crisp and Concise Study Materials"
 						description="We provide you with crisp and concise study materials, eliminating the need for exhaustive searches through numerous books"
@@ -183,3 +197,15 @@ const STUDY_MATERIALS = [
 	'/img/notes/note3.webp',
 	'/img/notes/note4.webp',
 ]
+
+const Noise = () => {
+	return (
+		<div
+			className="absolute inset-0 h-full w-full scale-[1.2] transform mask-[radial-gradient(#fff,transparent,75%)] opacity-10"
+			style={{
+				backgroundImage: 'url(/img/noise.webp)',
+				backgroundSize: '30%',
+			}}
+		></div>
+	)
+}

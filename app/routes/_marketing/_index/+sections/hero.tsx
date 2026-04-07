@@ -22,7 +22,7 @@ function FloatingFeatureCard({
 }) {
 	return (
 		<div
-			className={`absolute z-999 flex gap-2 rounded-2xl bg-white px-2 py-3 drop-shadow-lg ${className}`}
+			className={`absolute z-999 flex gap-2 rounded-2xl bg-white px-2 py-3 drop-shadow-md ${className}`}
 		>
 			<div
 				className={`${iconContainerClassName} flex size-10 rounded-full p-2`}
@@ -119,7 +119,7 @@ export default function Hero() {
 								subtitle="Full GATE Syllabus Coverage"
 							/>
 							<FloatingFeatureCard
-								className="right-0 bottom-0 translate-x-8"
+								className="right-0 bottom-0 translate-x-5 -translate-y-5"
 								iconContainerClassName="bg-info/30 text-info"
 								icon={<Icon name="question-answer-line" />}
 								title="1:1 Mentorship"

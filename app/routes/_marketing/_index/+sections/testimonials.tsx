@@ -3,7 +3,7 @@ import { InfiniteMovingCards } from '#app/components/aceternity/infinite-moving-
 export default function Testimonials() {
 	return (
 		<div
-			className="relative flex flex-col items-center justify-center overflow-hidden rounded-md bg-white py-36 antialiased"
+			className="relative flex flex-col items-center justify-center overflow-hidden rounded-md bg-white py-24 antialiased"
 			// initial={{ opacity: 0.0, y: 80 }}
 			// whileInView={{ opacity: 1, y: 0 }}
 			// transition={{

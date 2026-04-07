@@ -2,16 +2,16 @@ import { InfiniteMovingLogos } from '#app/components/aceternity/infinite-moving-
 
 const items: { src: string; alt: string }[] = [
 	{
+		src: '/img/uni/tezpur_uni.svg',
+		alt: 'Tezpur University Logo',
+	},
+	{
 		src: '/img/uni/ict_mumbai.svg',
 		alt: 'ICT Mumbai Logo',
 	},
 	{
 		src: '/img/uni/niftem_k.svg',
 		alt: 'NIFTEM Kundli Logo',
-	},
-	{
-		src: '/img/uni/tezpur_uni.svg',
-		alt: 'Tezpur University Logo',
 	},
 	{
 		src: '/img/uni/aks.svg',
@@ -81,7 +81,7 @@ export default function TrustedBy() {
 	return (
 		<section className="bg-white">
 			<div
-				className="container flex flex-col gap-6 py-12"
+				className="container flex flex-col gap-6 pt-24"
 				// initial={{ opacity: 0.0, y: -80 }}
 				// whileInView={{ opacity: 1, y: 0 }}
 				// transition={{

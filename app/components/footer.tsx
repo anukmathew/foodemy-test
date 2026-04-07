@@ -55,9 +55,9 @@ export default function Footer() {
 					<FooterSection
 						title="Legal"
 						links={[
-							{ label: 'T&C', href: '/tnc' },
-							{ label: 'Privacy policy', href: '/privacy' },
-							{ label: 'Refund policy', href: '/refund' },
+							{ label: 'T&C', href: '/legal/tnc' },
+							{ label: 'Privacy policy', href: '/legal/privacy-policy' },
+							{ label: 'Refund policy', href: '/legal/refund-policy' },
 						]}
 					/>
 					<FooterSection
