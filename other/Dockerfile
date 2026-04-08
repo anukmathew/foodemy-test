@@ -24,7 +24,7 @@ WORKDIR /myapp
 
 COPY --from=deps /myapp/node_modules /myapp/node_modules
 ADD package.json package-lock.json .npmrc ./
-RUN npm prune --omit=dev
+RUN npm prune --omit=dev && npm install esbuild
 
 # Build the app
 FROM base as build
