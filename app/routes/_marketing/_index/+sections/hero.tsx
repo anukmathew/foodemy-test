@@ -63,7 +63,7 @@ export default function Hero() {
 				<div className="container mx-auto flex flex-col items-center gap-12 pt-12 pb-24 md:pt-30 lg:flex-row xl:min-h-[calc(100dvh-(--spacing(48)))] 2xl:min-h-fit">
 					<div className="flex flex-2/3 flex-col items-center gap-12 text-center lg:items-start lg:text-left">
 						<div>
-							<h1 className="text-secondary font-serif text-3xl leading-tight font-semibold md:text-6xl">
+							<h1 className="text-secondary font-serif text-3xl leading-tight font-semibold tracking-tight md:text-6xl">
 								Master GATE Food Technology
 								<br /> with{' '}
 								<FlipWords

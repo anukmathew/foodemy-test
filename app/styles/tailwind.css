@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -287,11 +288,11 @@
 	}
 
 	h1 {
-		@apply text-foreground text-4xl leading-tight md:text-5xl lg:text-6xl;
+		@apply text-foreground text-xl leading-tight md:text-5xl lg:text-6xl;
 	}
 
 	h2 {
-		@apply text-muted-foreground text-2xl leading-tight md:text-2xl lg:text-3xl;
+		@apply text-muted-foreground text-2xl leading-tight lg:text-3xl;
 	}
 
 	h3 {
@@ -347,12 +348,10 @@
 	}
 }
 
-@layer utilities {
-	.highlight {
-		background: url(//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=ffdb00);
-		margin: -2px -6px;
-		padding: 2px 6px;
-	}
+@utility highlight {
+	background: url(//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=ffdb00);
+	margin: -2px -6px;
+	padding: 2px 6px;
 }
 
 @keyframes scroll-y {
