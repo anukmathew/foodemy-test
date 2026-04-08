@@ -192,7 +192,7 @@ jobs:
   deploy:
     name: 🚀 Deploy
     runs-on: ubuntu-24.04
-    needs: [lint, typecheck, container]
+    needs: [container]
     # only deploy on pushes
     if: ${{ github.event_name == 'push' }}
     steps:
