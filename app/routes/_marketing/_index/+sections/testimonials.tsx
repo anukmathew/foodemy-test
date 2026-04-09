@@ -1,4 +1,4 @@
-import { InfiniteMovingCards } from '#app/components/aceternity/infinite-moving-cards.tsx'
+import { InfiniteMovingTestimonials } from '#app/components/aceternity/infinite-moving-testimonials.tsx'
 
 export default function Testimonials() {
 	return (
@@ -13,7 +13,11 @@ export default function Testimonials() {
 			// }}
 			// viewport={{ once: true }}
 		>
-			<InfiniteMovingCards items={testimonials} direction="left" speed="slow" />
+			<InfiniteMovingTestimonials
+				items={testimonials}
+				direction="left"
+				speed="slow"
+			/>
 		</div>
 	)
 }
@@ -25,27 +29,32 @@ const testimonials = [
 			'Foodemy’s online coaching helped me understand complex concepts easily.',
 		name: 'Aarav Sharma',
 		title: 'GATE 2022 Topper',
+		image: 'img/students/1.jpg',
+	},
+	{
+		quote: 'I highly recommend Foodemy for GATE preparation.',
+		name: 'Vikram Singh',
+		title: 'GATE 2022 Topper',
+		image: 'img/students/1.jpg',
 	},
 	{
 		quote:
 			'The study material provided by Foodemy was comprehensive and easy to follow.',
 		name: 'Priya Gupta',
 		title: 'GATE 2022 Topper',
+		image: 'img/students/2.jpg',
 	},
 	{
 		quote:
 			'I was able to clear my doubts instantly with the help of Foodemy’s faculty.',
 		name: 'Rohan Verma',
 		title: 'GATE 2022 Topper',
+		image: 'img/students/3.jpg',
 	},
 	{
 		quote: 'Foodemy’s mock tests were very helpful in my preparation.',
 		name: 'Sneha Patel',
 		title: 'GATE 2022 Topper',
-	},
-	{
-		quote: 'I highly recommend Foodemy for GATE preparation.',
-		name: 'Vikram Singh',
-		title: 'GATE 2022 Topper',
+		image: 'img/students/4.jpg',
 	},
 ]

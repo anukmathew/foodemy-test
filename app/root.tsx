@@ -34,7 +34,7 @@ import { prisma } from './utils/db.server.ts'
 import { getEnv } from './utils/env.server.ts'
 import { pipeHeaders } from './utils/headers.server.ts'
 import { honeypot } from './utils/honeypot.server.ts'
-import { combineHeaders, getDomainUrl, getImgSrc } from './utils/misc.tsx'
+import { cn, combineHeaders, getDomainUrl, getImgSrc } from './utils/misc.tsx'
 import { useNonce } from './utils/nonce-provider.ts'
 import { type Theme, getTheme } from './utils/theme.server.ts'
 import { makeTimings, time } from './utils/timing.server.ts'
@@ -223,7 +223,15 @@ function App() {
 	)
 }
 
-export function Logo({ variant }: { variant?: 'light' | 'dark' }) {
+export function Logo({
+	variant = 'light',
+	size,
+}: {
+	variant?: 'light' | 'dark'
+	size?: 'sm' | 'md' | 'lg'
+}) {
+	const sizeClass = size === 'sm' ? 'h-5' : size === 'lg' ? 'h-8' : 'h-6'
+
 	if (variant === 'light') {
 		return (
 			<Link to="/" className="group grid leading-snug">
@@ -231,7 +239,7 @@ export function Logo({ variant }: { variant?: 'light' | 'dark' }) {
 				<img
 					src="/img/foodemy_logo_light.svg"
 					alt="Logo"
-					className="block h-6 w-auto"
+					className={cn('block w-auto', sizeClass)}
 				/>
 			</Link>
 		)
@@ -243,27 +251,11 @@ export function Logo({ variant }: { variant?: 'light' | 'dark' }) {
 				<img
 					src="/img/foodemy_logo_dark.svg"
 					alt="Logo"
-					className="block h-6 w-auto"
+					className={cn('block w-auto', sizeClass)}
 				/>
 			</Link>
 		)
 	}
-	return (
-		<Link to="/" className="group grid leading-snug">
-			{/* Light logo */}
-			<img
-				src="/img/foodemy_logo_dark.svg"
-				alt="Logo"
-				className="block h-6 w-auto dark:hidden"
-			/>
-			{/* Dark logo */}
-			<img
-				src="/img/foodemy_logo_light.svg"
-				alt="Logo"
-				className="hidden h-6 w-auto dark:block"
-			/>
-		</Link>
-	)
 }
 
 function AppWithProviders() {

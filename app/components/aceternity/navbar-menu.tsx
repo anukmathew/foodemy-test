@@ -77,48 +77,48 @@ export const Menu = ({
 	)
 }
 
-export const ProductItem = ({
-	title,
-	description,
-	href,
-	src,
-}: {
-	title: string
-	description: string
-	href: string
-	src: string
-}) => {
-	return (
-		<a href={href} className="flex space-x-2">
-			<img
-				src={src}
-				width={140}
-				height={70}
-				alt={title}
-				className="shrink-0 rounded-md shadow-2xl"
-			/>
-			<div>
-				<h4 className="mb-1 text-xl font-bold text-black dark:text-white">
-					{title}
-				</h4>
-				<p className="max-w-[10rem] text-sm text-neutral-700 dark:text-neutral-300">
-					{description}
-				</p>
-			</div>
-		</a>
-	)
-}
+// export const ProductItem = ({
+// 	title,
+// 	description,
+// 	href,
+// 	src,
+// }: {
+// 	title: string
+// 	description: string
+// 	href: string
+// 	src: string
+// }) => {
+// 	return (
+// 		<a href={href} className="flex space-x-2">
+// 			<img
+// 				src={src}
+// 				width={140}
+// 				height={70}
+// 				alt={title}
+// 				className="shrink-0 rounded-md shadow-2xl"
+// 			/>
+// 			<div>
+// 				<h4 className="mb-1 text-xl font-bold text-black dark:text-white">
+// 					{title}
+// 				</h4>
+// 				<p className="max-w-[10rem] text-sm text-neutral-700 dark:text-neutral-300">
+// 					{description}
+// 				</p>
+// 			</div>
+// 		</a>
+// 	)
+// }
 
-export const HoveredLink = ({ children, ...rest }: any) => {
-	return (
-		<a
-			{...rest}
-			className="text-neutral-700 hover:text-black dark:text-neutral-200"
-		>
-			{children}
-		</a>
-	)
-}
+// export const HoveredLink = ({ children, ...rest }: any) => {
+// 	return (
+// 		<a
+// 			{...rest}
+// 			className="text-neutral-700 hover:text-black dark:text-neutral-200"
+// 		>
+// 			{children}
+// 		</a>
+// 	)
+// }
 
 export default function Navbar({ className }: { className?: string }) {
 	const [active, setActive] = useState<string | null>(null)
@@ -131,7 +131,7 @@ export default function Navbar({ className }: { className?: string }) {
 		>
 			<Menu setActive={setActive}>
 				<div className="flex w-full justify-between">
-					<Logo />
+					<Logo size="lg" />
 					<div className="flex gap-6">
 						<NavLink to="/">Home</NavLink>
 						<NavLink to="/courses">Courses</NavLink>

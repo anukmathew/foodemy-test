@@ -9,7 +9,7 @@ export default function Footer() {
 			<div className="flex flex-col justify-between gap-8 px-4 py-4 sm:flex-row sm:px-12 sm:py-18">
 				<div className="flex flex-col justify-between gap-4">
 					<div className="hidden flex-col gap-3 md:flex">
-						<Logo />
+						<Logo variant="dark" />
 						<div className="flex flex-col gap-1 text-xs">
 							<span>Copyright © 2025 Foodemy.</span>
 							<span>All rights reserved.</span>

@@ -3,6 +3,7 @@ import { type ReactElement } from 'react'
 import { Link } from 'react-router'
 import { DotBackground } from '#app/components/aceternity/dot-background.tsx'
 import { FlipWords } from '#app/components/aceternity/flip-words.tsx'
+import { TypewriterEffectSmooth } from '#app/components/aceternity/typewriter-effect.tsx'
 import { Icon } from '#app/components/ui/icon.tsx'
 import { StudentsCount } from '../+components/avatar-group'
 
@@ -84,10 +85,15 @@ export default function Hero() {
 							<h1 className="text-secondary font-serif text-3xl leading-tight font-semibold tracking-tight md:text-6xl">
 								Master GATE Food Technology
 								<br /> with{' '}
-								<FlipWords
+								{/* <FlipWords
 									className="text-primary-foreground highlight font-black italic"
 									words={words}
 									duration={1000}
+								/> */}
+								<TypewriterEffectSmooth
+									className="text-primary-foreground text-3xl font-black italic md:text-6xl"
+									words={typewriterWords}
+									cursorClassName="text-primary-foreground"
 								/>
 							</h1>
 							<p className="text-muted-foreground font-normal">
@@ -98,7 +104,7 @@ export default function Hero() {
 						<div className="flex items-center gap-4 md:gap-6">
 							<Link
 								to={'login'}
-								className="text-primary-foreground bg-primary hover:bg-primary-soft hover:text-primary-soft-foreground flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold drop-shadow-lg duration-300"
+								className="text-primary-foreground bg-primary hover:bg-primary-soft hover:text-primary-soft-foreground flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold shadow-md duration-300 hover:-translate-y-[2px] hover:scale-105 hover:shadow-xl"
 								aria-label="Link to enroll in Foodemy's courses"
 							>
 								Enroll now
@@ -106,7 +112,7 @@ export default function Hero() {
 							</Link>
 							<Link
 								to="courses"
-								className="text-muted-foreground bg-muted hover:bg-primary-soft hover:text-primary-soft-foreground flex items-center justify-center rounded-full px-6 py-3 text-base font-normal drop-shadow-lg duration-300"
+								className="text-muted-foreground bg-muted hover:bg-primary-soft hover:text-primary-soft-foreground flex items-center justify-center rounded-full px-6 py-3 text-base font-normal shadow-md duration-300 hover:-translate-y-[2px] hover:scale-105 hover:shadow-xl"
 								aria-label="Link to know more about Foodemy's courses"
 							>
 								<span>Explore courses</span>
@@ -129,7 +135,7 @@ export default function Hero() {
 							animate={{ opacity: 1, scale: 1, x: 0 }}
 							transition={{ duration: 0.5, ease: 'easeInOut' }}
 						>
-							<FloatingFeatureCard
+							{/* <FloatingFeatureCard
 								className="top-0 left-0 -translate-x-8"
 								iconContainerClassName="bg-accent/30 text-accent"
 								icon={<Icon name="file-list-3-line" />}
@@ -144,7 +150,7 @@ export default function Hero() {
 								title="1:1 Mentorship"
 								subtitle="Personalized Progress Check-ins"
 								floatDelay={2.1}
-							/>
+							/> */}
 							<div className="bg-primary-soft/90 rotate-2 overflow-hidden rounded-4xl p-3 shadow-lg">
 								<div className="-rotate-2 overflow-hidden rounded-4xl bg-white p-4">
 									<img
@@ -161,3 +167,25 @@ export default function Hero() {
 		</div>
 	)
 }
+
+const typewriterWords = [
+	{
+		text: 'Confidence',
+		className: 'textprimary-foreground',
+	},
+	{
+		text: 'Ease',
+	},
+	{
+		text: 'Guidance',
+	},
+	{
+		text: 'Mentorship',
+	},
+	{
+		text: 'Strategy',
+	},
+	{
+		text: 'Precision',
+	},
+]
