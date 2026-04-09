@@ -14,12 +14,24 @@ export default function WhatIsFygate() {
 				viewport={{ once: true }}
 				className="container flex items-center gap-24 py-24"
 			>
-				<div className="hidden flex-1/2 overflow-hidden lg:block">
-					<img
-						src={'/img/about-img.jpg'}
-						alt="Hero Image"
-						className="h-full w-full object-cover"
-					/>
+				<div className="relative hidden flex-1/2 lg:block">
+					{/* <div className="bg-primary-foreground absolute inset-0 -translate-x-6 -translate-y-6 rounded-2xl"></div> */}
+					<div className="relative overflow-hidden rounded-2xl">
+						<img
+							src={'/img/about-img.webp'}
+							alt="Hero Image"
+							className="h-full w-full object-cover"
+						/>
+						<div className="from-primary-foreground to-primary-foreground absolute right-4 bottom-4 left-4 rounded-xl border border-white/40 bg-linear-to-br via-white/20 px-4 py-3 backdrop-blur-sm">
+							<p className="text-muted font-serif text-sm font-semibold">
+								This is more than prep. It's a plan. A path. And if you're
+								serious about GATE, we're serious about getting you there.
+							</p>
+							<p className="text-muted/80 text-right text-xs">
+								- The fyGATE Promise
+							</p>
+						</div>
+					</div>
 				</div>
 				<div className="relative flex flex-1/2 flex-col gap-4">
 					<h2 className="">
