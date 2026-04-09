@@ -3,7 +3,6 @@ import { type ReactElement } from 'react'
 import { Link } from 'react-router'
 import { DotBackground } from '#app/components/aceternity/dot-background.tsx'
 import { FlipWords } from '#app/components/aceternity/flip-words.tsx'
-import { Button } from '#app/components/aceternity/moving-border.tsx'
 import { Icon } from '#app/components/ui/icon.tsx'
 import { StudentsCount } from '../+components/avatar-group'
 
@@ -13,28 +12,47 @@ function FloatingFeatureCard({
 	icon,
 	title,
 	subtitle,
+	floatDelay = 0,
 }: {
 	className: string
 	iconContainerClassName: string
 	icon: ReactElement
 	title: string
 	subtitle: string
+	floatDelay?: number
 }) {
 	return (
 		<div
-			className={`absolute z-999 flex gap-2 rounded-2xl bg-white px-2 py-3 drop-shadow-md ${className}`}
+			className={`absolute z-999 ${className}`}
+			// initial={{ opacity: 0, y: 16 }}
+			// animate={{ opacity: 1, y: 0 }}
+			// transition={{ duration: 0.5, ease: 'easeInOut' }}
 		>
-			<div
-				className={`${iconContainerClassName} flex size-10 rounded-full p-2`}
+			<motion.div
+				className="flex gap-2 rounded-2xl bg-white px-2 py-3 drop-shadow-md"
+				animate={{ y: [0, -8, 0] }}
+				transition={{
+					duration: 3,
+					ease: 'easeInOut',
+					repeat: Infinity,
+					repeatType: 'loop',
+					delay: floatDelay,
+				}}
 			>
-				{icon}
-			</div>
-			<div className="flex flex-col items-start">
-				<span className="text-muted-foreground text-sm font-bold">{title}</span>
-				<span className="text-muted-foreground text-xs font-normal">
-					{subtitle}
-				</span>
-			</div>
+				<div
+					className={`${iconContainerClassName} flex size-10 rounded-full p-2`}
+				>
+					{icon}
+				</div>
+				<div className="flex flex-col items-start">
+					<span className="text-muted-foreground text-sm font-bold">
+						{title}
+					</span>
+					<span className="text-muted-foreground text-xs font-normal">
+						{subtitle}
+					</span>
+				</div>
+			</motion.div>
 		</div>
 	)
 }
@@ -117,6 +135,7 @@ export default function Hero() {
 								icon={<Icon name="file-list-3-line" />}
 								title="Structured modules"
 								subtitle="Full GATE Syllabus Coverage"
+								floatDelay={1.1}
 							/>
 							<FloatingFeatureCard
 								className="right-0 bottom-0 translate-x-5 -translate-y-5"
@@ -124,6 +143,7 @@ export default function Hero() {
 								icon={<Icon name="question-answer-line" />}
 								title="1:1 Mentorship"
 								subtitle="Personalized Progress Check-ins"
+								floatDelay={2.1}
 							/>
 							<div className="bg-primary-soft/90 rotate-2 overflow-hidden rounded-4xl p-3 shadow-lg">
 								<div className="-rotate-2 overflow-hidden rounded-4xl bg-white p-4">
