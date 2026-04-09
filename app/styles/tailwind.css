@@ -65,6 +65,7 @@
 	--ring: oklch(60.93% 0.1819 257.29);
 }
 
+/* Comment out the dark mode css classes */
 .dark {
 	/* Core surfaces */
 	--background: oklch(24.5% 0.0305 264.8);
@@ -296,7 +297,7 @@
 	}
 
 	h3 {
-		@apply text-lg leading-snug md:text-xl lg:text-3xl;
+		@apply text-lg leading-snug md:text-xl lg:text-2xl;
 	}
 
 	h4 {
@@ -312,7 +313,7 @@
 	}
 
 	p {
-		@apply text-primary-soft-foreground leading-relaxed text-pretty;
+		@apply text-primary-soft-foreground text-base leading-relaxed text-pretty md:text-lg;
 	}
 
 	/* Educational-specific utilities */

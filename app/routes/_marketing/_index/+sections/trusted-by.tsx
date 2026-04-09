@@ -1,6 +1,8 @@
+import { LogoSoup } from '@sanity-labs/logo-soup/react'
 import { InfiniteMovingLogos } from '#app/components/aceternity/infinite-moving-logos.tsx'
+import _ from 'lodash'
 
-const items: { src: string; alt: string }[] = [
+export const uniLogos: { src: string; alt: string }[] = [
 	{
 		src: '/img/uni/tezpur_uni.svg',
 		alt: 'Tezpur University Logo',
@@ -92,7 +94,16 @@ export default function TrustedBy() {
 				// viewport={{ once: true }}
 			>
 				<h2 className="mb-4 text-center">Trusted by students from</h2>
-				<InfiniteMovingLogos items={items} speed="slow" direction="right" />
+				<InfiniteMovingLogos
+					items={uniLogos}
+					speed="slow"
+					direction="right"
+					className="hidden lg:block"
+				/>
+				<LogoSoup
+					logos={_.take(_.shuffle(uniLogos), 10)}
+					className="block lg:hidden"
+				/>
 			</div>
 		</section>
 	)

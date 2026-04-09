@@ -263,7 +263,7 @@ export const NavbarLogo = ({ visible }: { visible?: boolean }) => {
 
 export const NavbarButton = ({
 	href,
-	as: Tag = 'a',
+	as: Tag = 'div',
 	children,
 	className,
 	variant = 'primary',

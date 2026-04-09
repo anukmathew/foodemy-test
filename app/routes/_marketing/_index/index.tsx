@@ -3,7 +3,7 @@ import Hero from './+sections/hero.tsx'
 import Testimonials from './+sections/testimonials.tsx'
 import TrustedBy from './+sections/trusted-by.tsx'
 import WhatIsFygate from './+sections/fygate-course.tsx'
-import WhyUs from './+sections/why-choose-foodemy.tsx'
+import WhyChooseFoodemy from './+sections/why-choose-foodemy.tsx'
 import { type Route } from './+types/index.ts'
 
 export const meta: Route.MetaFunction = () => [
@@ -26,7 +26,7 @@ export default function Index() {
 			<TrustedBy />
 			<Testimonials />
 			<WhatIsFygate />
-			<WhyUs />
+			<WhyChooseFoodemy />
 			<AboutFoodemy />
 		</div>
 	)

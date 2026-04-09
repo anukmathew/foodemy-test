@@ -60,9 +60,9 @@ export default function Hero() {
 		// viewport={{ once: true }}
 		>
 			<DotBackground>
-				<div className="container mx-auto flex flex-col items-center gap-12 pt-12 pb-24 md:pt-30 lg:flex-row xl:min-h-[calc(100dvh-(--spacing(48)))] 2xl:min-h-fit">
+				<div className="container mx-auto flex flex-col items-center gap-12 pt-25 pb-24 md:pt-30 lg:flex-row xl:min-h-[calc(100dvh-(--spacing(48)))] 2xl:min-h-fit">
 					<div className="flex flex-2/3 flex-col items-center gap-12 text-center lg:items-start lg:text-left">
-						<div>
+						<div className="flex flex-col gap-6">
 							<h1 className="text-secondary font-serif text-3xl leading-tight font-semibold tracking-tight md:text-6xl">
 								Master GATE Food Technology
 								<br /> with{' '}
@@ -72,12 +72,12 @@ export default function Hero() {
 									duration={1000}
 								/>
 							</h1>
-							<p className="text-muted-foreground text-lg font-normal">
+							<p className="text-muted-foreground font-normal">
 								Your personal mentor for GATE — learn smarter with expert
 								guidance, structured modules, and clarity that sticks.
 							</p>
 						</div>
-						<div className="flex items-center gap-6">
+						<div className="flex items-center gap-4 md:gap-6">
 							<Link
 								to={'login'}
 								className="text-primary-foreground bg-primary hover:bg-primary-soft hover:text-primary-soft-foreground flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold drop-shadow-lg duration-300"

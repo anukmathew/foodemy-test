@@ -23,18 +23,13 @@ function FeatureCard({
 		<>
 			<h3
 				className={cn(
-					'font-display text-left leading-10 font-semibold tracking-[-0.015em] text-balance text-white',
+					'font-display text-left font-semibold tracking-[-0.015em] text-balance text-white',
 					textClassName,
 				)}
 			>
 				{title}
 			</h3>
-			<p
-				className={cn(
-					'mt-4 text-left leading-6 text-neutral-200',
-					textClassName,
-				)}
-			>
+			<p className={cn('mt-4 text-left text-neutral-200', textClassName)}>
 				{description}
 			</p>
 		</>
@@ -47,14 +42,8 @@ function FeatureCard({
 				className,
 			)}
 		>
-			<div
-				className="relative h-full overflow-hidden bg-[radial-gradient(88%_100%_at_top,rgba(255,255,255,0.5),rgba(255,255,255,0))] sm:mx-0 sm:rounded-2xl"
-				style={{
-					boxShadow:
-						'0 10px 32px rgba(34, 42, 53, 0.12), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.05), 0 4px 6px rgba(34, 42, 53, 0.08), 0 24px 108px rgba(47, 48, 55, 0.10)',
-				}}
-			>
-				<motion.div className={cn('h-full px-4 py-20 sm:px-10')}>
+			<div className="relative h-full overflow-hidden bg-[radial-gradient(88%_100%_at_top,rgba(255,255,255,0.5),rgba(255,255,255,0))] sm:mx-0 sm:rounded-2xl">
+				<div className={cn('h-full px-4 sm:px-10 md:py-20')}>
 					<Noise />
 					<div className="max-md:px-4 max-md:py-8">
 						{inlineVisual ? (
@@ -69,13 +58,13 @@ function FeatureCard({
 							</>
 						)}
 					</div>
-				</motion.div>
+				</div>
 			</div>
 		</section>
 	)
 }
 
-export default function WhyUs() {
+export default function WhyChooseFoodemy() {
 	return (
 		<section className="container py-36">
 			<motion.div
@@ -93,7 +82,7 @@ export default function WhyUs() {
 				</h2>
 				<div className="mx-auto grid w-full max-w-full grid-cols-1 gap-4 lg:grid-cols-4 xl:grid-cols-3">
 					<FeatureCard
-						className="bg-secondary text-secondary lg:mn-h-75 col-span-1 h-full lg:col-span-4 xl:col-span-2"
+						className="bg-secondary text-secondary col-span-1 h-full lg:col-span-4 lg:min-h-75 xl:col-span-2"
 						textClassName="text-secondary-foreground"
 						title="High Quality Video Lectures"
 						description="Our expert faculty brings their wealth of knowledge and teaching experience to deliver high-quality video lectures."
@@ -109,7 +98,7 @@ export default function WhyUs() {
 					<FeatureCard
 						className="bg-secondary col-span-1 lg:col-span-2 xl:col-span-1"
 						textClassName="text-secondary-foreground"
-						title="Mentorship from subject experts"
+						title="Mentorship from Subject Experts"
 						description="We believe in providing personalized attention. Benefit from mentorship from our experienced subject experts"
 					/>
 					<FeatureCard
