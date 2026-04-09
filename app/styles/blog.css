@@ -1,26 +1,28 @@
+@reference "./tailwind.css";
+
+/* Override typography CSS variables on the prose element */
 @utility prose {
 	--tw-prose-headings: var(--color-info);
 	--tw-prose-body: var(--color-primary-foreground);
+	--tw-prose-links: var(--color-primary);
+}
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		color: var(--color-muted-foreground);
-		font-family: var(--font-display);
-	}
-
-	h1 {
-		font-weight: 800;
-	}
-
-	h2 {
-		font-weight: 600;
-	}
-
-	a {
-		text-decoration: dashed underline var(--color-muted-foreground);
+/* Style child elements directly in a layer */
+@layer utilities {
+	.prose {
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			color: var(--color-secondary);
+			font-family: var(--font-display);
+		}
+		a {
+			color: var(--color-info);
+			font-weight: 500;
+			text-decoration: dashed underline var(--color-info);
+		}
 	}
 }

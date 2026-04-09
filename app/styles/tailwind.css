@@ -313,7 +313,7 @@
 	}
 
 	p {
-		@apply text-primary-soft-foreground text-base leading-relaxed text-pretty md:text-lg;
+		@apply text-primary-soft-foreground text-base leading-relaxed text-pretty 2xl:text-lg;
 	}
 
 	/* Educational-specific utilities */

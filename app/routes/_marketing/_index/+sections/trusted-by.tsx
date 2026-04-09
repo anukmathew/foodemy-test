@@ -101,8 +101,9 @@ export default function TrustedBy() {
 					className="hidden lg:block"
 				/>
 				<LogoSoup
-					logos={_.take(_.shuffle(uniLogos), 10)}
+					logos={_.take(_.shuffle(uniLogos), 7)}
 					className="block lg:hidden"
+					baseSize={72}
 				/>
 			</div>
 		</section>

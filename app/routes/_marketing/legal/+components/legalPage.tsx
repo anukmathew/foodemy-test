@@ -14,7 +14,7 @@ export default function LegalPage({
 	return (
 		<div className="container flex flex-col items-center gap-24 py-36 lg:px-36">
 			<div className="flex flex-col items-center gap-4">
-				<span className="text-sm font-bold text-indigo-700">
+				<span className="text-accent text-sm font-bold">
 					Last updated on{' '}
 					{new Date(updatedOn).toLocaleDateString('en-US', {
 						year: 'numeric',
