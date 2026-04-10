@@ -1,6 +1,6 @@
 import About from './+sections/about'
 import Team from './+sections/team'
-import FoodemyTimeline from './+sections/timeLine'
+import FoodemyTimeline from './+sections/timeline'
 import VisionMission from './+sections/vision-mission'
 import { type Route } from './+types/_aboutUs'
 
