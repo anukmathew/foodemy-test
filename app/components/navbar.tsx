@@ -29,7 +29,7 @@ export default function Navigation() {
 		},
 		{
 			name: 'About us',
-			link: '/aboutUs',
+			link: '/about-us',
 		},
 		{
 			name: 'Contact',
