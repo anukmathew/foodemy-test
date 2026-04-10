@@ -3,18 +3,18 @@ import { motion } from 'motion/react'
 export default function About() {
 	return (
 		<section className="container pt-36 sm:py-36 sm:pt-48">
-			<div
-				className="grid gap-24 md:grid-cols-3 lg:grid-cols-2"
-				// initial={{ opacity: 0.0, x: 40 }}
-				// whileInView={{ opacity: 1, x: 0 }}
-				// transition={{
-				// 	delay: 0.3,
-				// 	duration: 0.8,
-				// 	ease: 'easeInOut',
-				// }}
-				// viewport={{ once: true }}
+			<motion.div
+				className="flex gap-24"
+				initial={{ opacity: 0.0, y: 40 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				transition={{
+					delay: 0.5,
+					duration: 0.8,
+					ease: 'easeInOut',
+				}}
+				viewport={{ once: true }}
 			>
-				<div className="flex flex-col gap-4 md:col-span-2 lg:col-span-1">
+				<div className="flex flex-1/2 flex-col gap-4">
 					<h2>
 						About <span className="highlight">Foodemy</span>
 					</h2>
@@ -42,7 +42,7 @@ export default function About() {
 						their exams
 					</p>
 				</div>
-				<div className="relative hidden h-96 rounded-2xl shadow-xl md:block">
+				<div className="relative hidden w-full flex-1/2 rounded-2xl shadow-xl lg:flex">
 					<img
 						src="/img/aboutUs/aboutUs.webp"
 						alt="About Foodemy"
@@ -52,7 +52,7 @@ export default function About() {
 						<div className="bg-primary absolute right-0 bottom-0 left-0 h-20 rounded-b-2xl"></div>
 					</div>
 				</div>
-			</div>
+			</motion.div>
 		</section>
 	)
 }

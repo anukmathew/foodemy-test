@@ -1,28 +1,63 @@
+import { motion, useReducedMotion } from 'motion/react'
 import TeamMateCard from '../+components/teamMateCard'
 
 export default function Team() {
+	const prefersReducedMotion = useReducedMotion()
+
+	const cardsContainerVariants = {
+		hidden: {},
+		show: {
+			transition: {
+				delayChildren: prefersReducedMotion ? 0 : 0.15,
+				staggerChildren: prefersReducedMotion ? 0 : 0.12,
+			},
+		},
+	}
+
+	const cardVariants = {
+		hidden: prefersReducedMotion
+			? { opacity: 1, y: 0, scale: 1 }
+			: { opacity: 0, y: 24, scale: 0.98 },
+		show: {
+			opacity: 1,
+			y: 0,
+			scale: 1,
+			transition: {
+				duration: prefersReducedMotion ? 0 : 0.5,
+			},
+		},
+	}
+
 	return (
 		<section className="w-full py-36 shadow-xl">
-			<div
-				// initial={{ opacity: 0.0, y: 80 }}
-				// whileInView={{ opacity: 1, y: 0 }}
-				// transition={{
-				// 	delay: 0.3,
-				// 	duration: 0.8,
-				// 	ease: 'easeInOut',
-				// }}
-				// viewport={{ once: true }}
+			<motion.div
+				initial={{ opacity: 0.0, y: 80 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				transition={{
+					delay: 0.1,
+					duration: 0.8,
+					ease: 'easeInOut',
+				}}
+				viewport={{ once: true, amount: 0.1 }}
 				className="container px-4 xl:px-36"
 			>
 				<h2 className="text-center">
 					The dream <span className="highlight">team</span>
 				</h2>
-				<div className="mt-12 grid grid-cols-2 gap-4 md:gap-12 lg:grid-cols-3">
+				<motion.div
+					className="mt-12 grid grid-cols-2 gap-4 md:gap-12 lg:grid-cols-3"
+					initial="hidden"
+					whileInView="show"
+					viewport={{ once: true, amount: 0.2 }}
+					variants={cardsContainerVariants}
+				>
 					{TeamMembers.map((member) => (
-						<TeamMateCard key={member.name} {...member} />
+						<motion.div key={member.name} variants={cardVariants}>
+							<TeamMateCard {...member} />
+						</motion.div>
 					))}
-				</div>
-			</div>
+				</motion.div>
+			</motion.div>
 		</section>
 	)
 }

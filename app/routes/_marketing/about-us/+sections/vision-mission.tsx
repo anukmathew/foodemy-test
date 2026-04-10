@@ -1,25 +1,67 @@
+import { motion, useReducedMotion } from 'motion/react'
+
 export default function VisionMission() {
+	const prefersReducedMotion = useReducedMotion()
+
+	const sectionVariants = {
+		hidden: {},
+		show: {
+			transition: {
+				delayChildren: prefersReducedMotion ? 0 : 0.1,
+				staggerChildren: prefersReducedMotion ? 0 : 0.12,
+			},
+		},
+	}
+
+	const imageVariants = {
+		hidden: prefersReducedMotion
+			? { opacity: 1, x: 0 }
+			: { opacity: 0, x: -40 },
+		show: {
+			opacity: 1,
+			x: 0,
+			transition: {
+				duration: prefersReducedMotion ? 0 : 0.8,
+				ease: 'easeInOut' as const,
+			},
+		},
+	}
+
+	const textVariants = {
+		hidden: prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 },
+		show: {
+			opacity: 1,
+			x: 0,
+			transition: {
+				duration: prefersReducedMotion ? 0 : 0.8,
+				ease: 'easeInOut' as const,
+			},
+		},
+	}
+
 	return (
 		<section className="bg-primary/10 group">
-			<div
-				className="container mt-12 flex items-center gap-8 py-12 sm:py-18 md:py-24"
-				// initial={{ opacity: 0.0, x: -40 }}
-				// whileInView={{ opacity: 1, x: 0 }}
-				// transition={{
-				// 	delay: 0.3,
-				// 	duration: 0.8,
-				// 	ease: 'easeInOut',
-				// }}
-				// viewport={{ once: true }}
+			<motion.div
+				className="container mt-12 flex items-center gap-24 py-12 sm:py-18 md:py-24"
+				initial="hidden"
+				whileInView="show"
+				viewport={{ once: true, amount: 0.25 }}
+				variants={sectionVariants}
 			>
-				<div className="hidden h-96 flex-1/2 overflow-hidden rounded-2xl shadow-xl grayscale transition-all duration-300 group-hover:grayscale-0 sm:flex">
+				<motion.div
+					className="hidden h-96 flex-1/2 overflow-hidden rounded-2xl shadow-xl grayscale transition-all duration-300 group-hover:grayscale-0 sm:flex"
+					variants={imageVariants}
+				>
 					<img
 						src="/img/aboutUs/vision.webp"
 						alt="Vision and Mission"
 						className="h-full w-full object-cover transition duration-300 hover:scale-105"
 					/>
-				</div>
-				<div className="text-secondary-foreground flex flex-1/2 flex-col gap-12">
+				</motion.div>
+				<motion.div
+					className="text-secondary-foreground flex flex-1/2 flex-col gap-12"
+					variants={textVariants}
+				>
 					<div className="flex flex-col gap-2">
 						<div className="flex items-center gap-2">
 							<div className="bg-destructive h-8 w-1"></div>
@@ -45,8 +87,8 @@ export default function VisionMission() {
 							succeed.
 						</p>
 					</div>
-				</div>
-			</div>
+				</motion.div>
+			</motion.div>
 		</section>
 	)
 }
