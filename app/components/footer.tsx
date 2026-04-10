@@ -11,8 +11,8 @@ export default function Footer() {
 					<div className="hidden flex-col gap-3 md:flex">
 						<Logo variant="dark" />
 						<div className="flex flex-col gap-1 text-xs">
-							<span>Copyright © 2025 Foodemy.</span>
-							<span>All rights reserved.</span>
+							<span>{`Copyright © ${new Date().getFullYear()} Foodemy`}</span>
+							<span>All rights reserved</span>
 						</div>
 					</div>
 					<div className="flex flex-col gap-2 rounded-xl">

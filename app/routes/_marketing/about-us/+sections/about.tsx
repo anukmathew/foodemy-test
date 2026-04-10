@@ -5,10 +5,10 @@ export default function About() {
 		<section className="container pt-36 sm:py-36 sm:pt-48">
 			<motion.div
 				className="flex gap-24"
-				initial={{ opacity: 0.0, y: 40 }}
+				initial={{ opacity: 0.0, y: 80 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				transition={{
-					delay: 0.5,
+					delay: 0.1,
 					duration: 0.8,
 					ease: 'easeInOut',
 				}}

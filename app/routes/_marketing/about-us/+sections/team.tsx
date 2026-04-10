@@ -34,11 +34,11 @@ export default function Team() {
 				initial={{ opacity: 0.0, y: 80 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				transition={{
-					delay: 0.1,
+					delay: 0.3,
 					duration: 0.8,
 					ease: 'easeInOut',
 				}}
-				viewport={{ once: true, amount: 0.1 }}
+				viewport={{ once: true }}
 				className="container px-4 xl:px-36"
 			>
 				<h2 className="text-center">

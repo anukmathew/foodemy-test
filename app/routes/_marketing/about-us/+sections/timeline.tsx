@@ -1,3 +1,4 @@
+import { motion } from 'motion/react'
 import { Timeline } from '#app/components/aceternity/timeline.tsx'
 import YTVideoCard from '../+components/ytVideoCard'
 
@@ -76,22 +77,22 @@ export default function FoodemyTimeline() {
 	]
 	return (
 		<section className="w-full bg-white shadow-xl inset-shadow-2xs">
-			<div
-				// initial={{ opacity: 0.0, y: 80 }}
-				// whileInView={{ opacity: 1, y: 0 }}
-				// transition={{
-				// 	delay: 0.3,
-				// 	duration: 0.8,
-				// 	ease: 'easeInOut',
-				// }}
-				// viewport={{ once: true }}
+			<motion.div
+				initial={{ opacity: 0.0, y: 80 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				transition={{
+					delay: 0.1,
+					duration: 0.8,
+					ease: 'easeInOut',
+				}}
+				viewport={{ once: true }}
 				className="relative w-full py-36 xl:container"
 			>
 				<h2 className="text-center">
 					Our <span className="highlight">journey</span>
 				</h2>
 				<Timeline data={data} />
-			</div>
+			</motion.div>
 		</section>
 	)
 }
