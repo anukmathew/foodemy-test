@@ -83,7 +83,7 @@ export default function Hero() {
 					<div className="flex flex-2/3 flex-col items-center gap-12 text-center lg:items-start lg:text-left">
 						<div className="flex flex-col gap-6">
 							<h1 className="text-secondary font-serif text-3xl leading-tight font-semibold tracking-tight md:text-6xl">
-								Master GATE Food Technology
+								Master GATE XE/XL Food Technology
 								<br /> with{' '}
 								{/* <FlipWords
 									className="text-primary-foreground highlight font-black italic"

@@ -39,7 +39,7 @@
 
 	/* Muted — Warm neutral support */
 	--muted: oklch(95.8% 0.0124 91.52);
-	--muted-foreground: oklch(46.07% 0.0326 267.15);
+	--muted-foreground: oklch(65.004% 0.00007 271.152);
 
 	/* Accent — Fresh green-teal */
 	--accent: oklch(69.27% 0.1234 165.06);
@@ -62,7 +62,7 @@
 	--input: oklch(90.4% 0.0224 89.8);
 	--input-invalid: oklch(59.66% 0.1818 24.51);
 
-	--ring: oklch(60.93% 0.1819 257.29);
+	--ring: oklch(89.47% 0.1845 97.03);
 }
 
 /* Comment out the dark mode css classes */
@@ -265,7 +265,7 @@
 
 	@media (width >=1400px) {
 		& {
-			max-width: 1400px;
+			max-width: 1280px;
 		}
 	}
 }

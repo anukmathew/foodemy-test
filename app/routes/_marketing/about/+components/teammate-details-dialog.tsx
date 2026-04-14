@@ -8,6 +8,12 @@ import {
 	DialogTrigger,
 } from '#app/components/ui/dialog.tsx'
 import { Icon } from '#app/components/ui/icon.tsx'
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from '#app/components/ui/tooltip.tsx'
 
 export default function TeammateDetailsDialog({
 	name,
@@ -27,11 +33,11 @@ export default function TeammateDetailsDialog({
 			<DialogTrigger asChild>{children}</DialogTrigger>
 			<DialogContent className="w-[90%]">
 				<DialogHeader>
-					<DialogTitle className="font-display">{name}</DialogTitle>
-					<DialogDescription>{edu}</DialogDescription>
+					<DialogTitle className="font-display text-center">{name}</DialogTitle>
+					<DialogDescription className="text-center">{edu}</DialogDescription>
 				</DialogHeader>
 				<p className="text-center text-sm leading-relaxed">{bio}</p>
-				{linkedIn && (
+				{linkedIn ? (
 					<a
 						href={linkedIn}
 						target="_blank"
@@ -44,6 +50,10 @@ export default function TeammateDetailsDialog({
 						/>
 						View on LinkedIn
 					</a>
+				) : (
+					<span className="text-muted hover:text-muted-foreground mt-auto flex w-full cursor-pointer items-center justify-center gap-2 rounded-md border p-2 transition duration-300">
+						🥷🏼 &nbsp; Networking in stealth mode
+					</span>
 				)}
 			</DialogContent>
 		</Dialog>
