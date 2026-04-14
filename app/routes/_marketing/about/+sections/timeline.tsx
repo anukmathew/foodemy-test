@@ -36,7 +36,7 @@ export default function FoodemyTimeline() {
 			title: '2020',
 			content: (
 				<div>
-					<div className="flex h-48 w-full rounded-lg bg-radial bg-[url(/img/timeline/yt.webp)] bg-cover bg-center md:h-60 lg:h-96">
+					<div className="flex h-48 w-full rounded-2xl bg-radial bg-[url(/img/timeline/yt.webp)] bg-cover bg-center md:h-60 lg:h-96">
 						<div className="flex w-full flex-1 items-center bg-radial-[at_50%_50%] from-black/50 from-50% to-transparent to-100% p-4">
 							<span className="w-full text-center text-xl font-bold text-white md:text-2xl lg:text-3xl">
 								Hit 1000 subscribers on YouTube
@@ -64,7 +64,7 @@ export default function FoodemyTimeline() {
 			title: '2022',
 			content: (
 				<div>
-					<div className="flex h-48 w-full rounded-lg bg-radial bg-[url(/img/timeline/grad.webp)] bg-cover bg-center md:h-60 lg:h-96">
+					<div className="flex h-48 w-full rounded-2xl bg-radial bg-[url(/img/timeline/grad.webp)] bg-cover bg-center md:h-60 lg:h-96">
 						<div className="flex w-full flex-1 items-center bg-radial-[at_50%_50%] from-black/50 from-50% to-transparent to-100% p-4">
 							<span className="w-full text-center text-xl font-bold text-white md:text-2xl lg:text-3xl">
 								Our first batch of fyGATE students qualified GATE

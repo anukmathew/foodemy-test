@@ -278,7 +278,7 @@ export default function Contact() {
 											>
 												I agree to the
 												<a
-													href="/privacy"
+													href="/legal/privacy-policy"
 													className="border-secondary border-b border-dashed"
 												>
 													privacy policy
