@@ -29,7 +29,7 @@ export default function TeamMateCard({
 						href={linkedIn}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="bg-info text-info-foreground hover:bg-info/80 mt-auto flex w-full cursor-pointer items-baseline justify-center gap-2 rounded-md p-2 transition duration-300"
+						className="bg-info text-info-foreground hover:bg-info/80 mt-auto flex w-full cursor-pointer items-baseline justify-center gap-2 rounded-md p-2 no-underline transition duration-300"
 					>
 						<Icon
 							name="linkedin-fill"

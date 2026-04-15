@@ -60,7 +60,7 @@ export default function BlogPage({
 	}
 
 	return (
-		<article className="container flex flex-col items-center gap-12 py-30 md:py-48 lg:px-36">
+		<article className="container flex flex-col items-center gap-12 bg-white py-30 md:py-48 lg:px-36">
 			<div className="flex max-w-[65ch] flex-col items-center gap-12">
 				<div className="flex flex-col items-center gap-6">
 					<span className="text-destructive text-sm font-bold">
@@ -177,7 +177,7 @@ export default function BlogPage({
 					<Button
 						onClick={handleCopyLink}
 						variant="outline"
-						className="text-secondary hover:bg-muted flex gap-2 px-2 text-xs ring-0 focus:ring-0"
+						className="text-secondary hover:bg-muted flex gap-2 bg-white px-2 text-xs ring-0 focus:ring-0"
 					>
 						<Icon
 							name={isCopied ? 'file-copy-fill' : 'file-copy-line'}

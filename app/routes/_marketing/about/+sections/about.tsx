@@ -22,17 +22,12 @@ export default function About() {
 						Foodemy is an online education platform dedicated to advancing the
 						field of food technology. Our team of six passionate founders met
 						during their MTech studies in Food Technology at{' '}
-						<a
-							href="https://niftem.ac.in/"
-							className="border-secondary border-b border-dashed"
-						>
-							NIFTEM
-						</a>
-						, and founded FOODEMY in 2019 with the goal of helping students and
-						professionals in the industry gain practical skills, knowledge, and
-						real-world experience. We have a dedicated network of over a dozen
-						talented professionals who help us keep the wheels turning and make
-						Foodemy a success.
+						<a href="https://niftem.ac.in/">NIFTEM</a>, and founded FOODEMY in
+						2019 with the goal of helping students and professionals in the
+						industry gain practical skills, knowledge, and real-world
+						experience. We have a dedicated network of over a dozen talented
+						professionals who help us keep the wheels turning and make Foodemy a
+						success.
 					</p>
 					<p>
 						We started out by creating a YouTube channel that provided learning

@@ -49,7 +49,9 @@ export default function Navigation() {
 					<NavbarLogo />
 					<NavItems items={navItems} />
 					<NavbarButton className="bg-primary text-primary-foreground hover:bg-primary-soft border-primary-soft-foreground flex cursor-pointer items-center rounded-full px-10 py-2 font-bold transition duration-300">
-						<Link to={'login'}>Login</Link>
+						<Link to={'login'} className="no-underline">
+							Login
+						</Link>
 					</NavbarButton>
 				</NavBody>
 

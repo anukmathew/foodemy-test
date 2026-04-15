@@ -131,7 +131,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
 				<NavLink
 					onMouseEnter={() => setHovered(idx)}
 					onClick={onItemClick}
-					className="relative px-4 py-2"
+					className="relative px-4 py-2 no-underline"
 					key={`link-${idx}`}
 					to={item.link}
 					prefetch="intent"

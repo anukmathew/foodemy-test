@@ -293,7 +293,7 @@
 	}
 
 	h2 {
-		@apply text-muted-foreground text-2xl leading-tight lg:text-3xl;
+		@apply text-secondary text-2xl leading-tight lg:text-3xl;
 	}
 
 	h3 {
@@ -314,6 +314,11 @@
 
 	p {
 		@apply text-primary-soft-foreground text-base leading-relaxed text-pretty 2xl:text-lg;
+	}
+
+	a {
+		text-decoration: dashed underline var(--color-secondary);
+		text-underline-offset: 2px;
 	}
 
 	/* Educational-specific utilities */

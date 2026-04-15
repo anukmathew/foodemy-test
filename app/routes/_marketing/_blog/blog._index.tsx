@@ -38,7 +38,7 @@ export default function Blog() {
 	const featuredBlog = sortedBlogs[0]!
 
 	return (
-		<div className="container flex flex-col gap-12 py-36">
+		<div className="container flex flex-col gap-12 bg-white py-36">
 			<section aria-labelledby="featured" className="">
 				<h2 id="featured" className="sr-only">
 					Featured article

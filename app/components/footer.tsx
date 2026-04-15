@@ -110,7 +110,7 @@ function FooterSection({
 			<span className="text-foreground font-bold">{title}</span>
 			<div className="flex flex-col gap-3">
 				{links.map((link) => (
-					<Link key={link.label} to={link.href}>
+					<Link key={link.label} to={link.href} className="no-underline">
 						{link.iconName && (
 							<Icon name={link.iconName} size="sm" className="mr-2" />
 						)}

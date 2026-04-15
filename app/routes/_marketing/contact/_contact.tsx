@@ -277,12 +277,7 @@ export default function Contact() {
 												className="text-xs"
 											>
 												I agree to the
-												<Link
-													to="/legal/privacy-policy"
-													className="border-secondary border-b border-dashed"
-												>
-													privacy policy
-												</Link>
+												<Link to="/legal/privacy-policy">privacy policy</Link>
 											</FieldLabel>
 										</Field>
 										<div className="min-h-[32px]">
@@ -391,7 +386,10 @@ function ContactItem({
 			</div>
 			<div className="flex flex-col">
 				<span className="text-secondary text-sm font-thin">{title}</span>
-				<a href={href} className="text-primary-foreground font-semibold">
+				<a
+					href={href}
+					className="text-primary-foreground font-semibold no-underline"
+				>
 					{info}
 				</a>
 			</div>

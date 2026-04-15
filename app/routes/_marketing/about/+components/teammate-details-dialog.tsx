@@ -42,7 +42,7 @@ export default function TeammateDetailsDialog({
 						href={linkedIn}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="bg-info text-info-foreground hover:bg-info-foreground/20 mx-auto mt-2 flex w-[80%] justify-center gap-2 rounded-md p-2 text-sm transition duration-300"
+						className="bg-info text-info-foreground hover:bg-info-foreground/20 mx-auto mt-2 flex w-[80%] justify-center gap-2 rounded-md p-2 text-sm no-underline transition duration-300"
 					>
 						<Icon
 							name="linkedin-fill"
