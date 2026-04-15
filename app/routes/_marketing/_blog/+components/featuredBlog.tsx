@@ -14,6 +14,7 @@ function FeaturedBlog({ blog, slug }: { blog: BlogFrontmatter; slug: string }) {
 			to={`/blog/${slug}`}
 			className="flex h-[600px] flex-col overflow-hidden rounded-4xl bg-cover bg-center shadow-md"
 			style={{ backgroundImage: `url('${blog.bannerImage}')` }}
+			prefetch="intent"
 		>
 			<div className="text-muted/80 mt-auto flex flex-col gap-8 bg-linear-to-t from-black/70 from-60% to-transparent px-8 py-6 pt-24">
 				<div className="flex flex-col gap-2">

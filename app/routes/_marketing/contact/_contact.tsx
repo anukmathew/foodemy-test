@@ -277,12 +277,12 @@ export default function Contact() {
 												className="text-xs"
 											>
 												I agree to the
-												<a
-													href="/legal/privacy-policy"
+												<Link
+													to="/legal/privacy-policy"
 													className="border-secondary border-b border-dashed"
 												>
 													privacy policy
-												</a>
+												</Link>
 											</FieldLabel>
 										</Field>
 										<div className="min-h-[32px]">

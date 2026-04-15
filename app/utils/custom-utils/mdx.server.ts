@@ -1,6 +1,7 @@
-import { readdir } from 'fs/promises'
+import { readdir, readFile } from 'fs/promises'
 import path from 'path'
 import _ from 'lodash'
+import matter from 'gray-matter'
 import { bundleMDX } from 'mdx-bundler'
 import calculateReadingTime from 'reading-time'
 import rehypeCallouts, { type UserOptions } from 'rehype-callouts'
@@ -34,6 +35,8 @@ export type BlogFrontmatter = {
 		minutes: number
 	}
 }
+
+type BlogFrontmatterWithoutReadingTime = Omit<BlogFrontmatter, 'readingTime'>
 
 export async function getMDXPage({
 	dir,
@@ -108,13 +111,25 @@ export async function getAllMDXSlugs(dir: string) {
 		files
 			.filter((file) => path.extname(file) === '.mdx')
 			.map(async (file) => {
-				const { frontmatter } = await getMDXPage({
-					dir,
-					slug: path.basename(file, '.mdx'),
-				})
+				const slug = path.basename(file, '.mdx')
+				const fullPath = path.join(directory, file)
+				const source = await readFile(fullPath, 'utf-8')
+				const parsed = matter(source)
+				const frontmatter = parsed.data as BlogFrontmatterWithoutReadingTime
+				const rawDate = (parsed.data as { date?: unknown }).date
+				const normalizedDate =
+					rawDate instanceof Date
+						? rawDate.toISOString()
+						: typeof rawDate === 'string'
+							? rawDate
+							: String(rawDate ?? '')
 				return {
-					slug: path.basename(file, '.mdx'),
-					frontmatter,
+					slug,
+					frontmatter: {
+						...frontmatter,
+						date: normalizedDate,
+						readingTime: calculateReadingTime(parsed.content),
+					},
 				}
 			}),
 	)

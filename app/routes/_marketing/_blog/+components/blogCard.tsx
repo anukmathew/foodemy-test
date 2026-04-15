@@ -18,7 +18,7 @@ export function BlogCard({
 	slug: string
 }) {
 	return (
-		<Link to={`/blog/${slug}`} className="h-full">
+		<Link to={`/blog/${slug}`} className="h-full" prefetch="intent">
 			<Card className="border-muted group flex h-full flex-col overflow-hidden rounded-4xl">
 				<div className="relative rounded-4xl pt-4 pr-4 pl-4">
 					<div className="overflow-hidden rounded-2xl">
