@@ -1,8 +1,9 @@
 import { invariant } from '@epic-web/invariant'
 import { getMDXComponent } from 'mdx-bundler/client'
 import { useMemo } from 'react'
-import { useLoaderData } from 'react-router'
+import { data, useLoaderData } from 'react-router'
 import { getMDXPage } from '#app/utils/custom-utils/mdx.server.ts'
+import { pipeHeaders } from '#app/utils/headers.server.ts'
 import LegalPage from './+components/legalPage'
 import { type Route } from './+types/$slug'
 
@@ -10,13 +11,18 @@ export async function loader({ params }: Route.LoaderArgs) {
 	const { slug } = params
 	invariant(slug, 'An id is required')
 	const page = await getMDXPage({ dir: 'legal', slug })
-	return {
-		page,
-		headers: {
-			'Cache-Control': 'public, max-age=3600',
+	return data(
+		{ page },
+		{
+			headers: {
+				'Cache-Control':
+					'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
+			},
 		},
-	}
+	)
 }
+
+export const headers: Route.HeadersFunction = pipeHeaders
 
 export const meta: Route.MetaFunction = ({ loaderData }) => [
 	{

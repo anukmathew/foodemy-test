@@ -134,6 +134,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
 					className="relative px-4 py-2"
 					key={`link-${idx}`}
 					to={item.link}
+					prefetch="intent"
 				>
 					{hovered === idx && (
 						<motion.div

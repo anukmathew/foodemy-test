@@ -1,6 +1,7 @@
 import _ from 'lodash'
-import { useLoaderData } from 'react-router'
+import { data, useLoaderData } from 'react-router'
 import { getAllMDXSlugs } from '#app/utils/custom-utils/mdx.server.ts'
+import { pipeHeaders } from '#app/utils/headers.server.ts'
 import { BlogCard } from './+components/blogCard.tsx'
 import FeaturedBlog from './+components/featuredBlog.tsx'
 import { type Route } from './+types/blog._index.ts'
@@ -18,8 +19,18 @@ export const meta: Route.MetaFunction = () => [
 
 export async function loader({}: Route.LoaderArgs) {
 	const slugs = await getAllMDXSlugs('blogs')
-	return { slugs }
+	return data(
+		{ slugs },
+		{
+			headers: {
+				'Cache-Control':
+					'public, max-age=900, s-maxage=3600, stale-while-revalidate=86400',
+			},
+		},
+	)
 }
+
+export const headers: Route.HeadersFunction = pipeHeaders
 
 export default function Blog() {
 	const data = useLoaderData<typeof loader>()

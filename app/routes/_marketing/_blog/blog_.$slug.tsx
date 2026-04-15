@@ -1,26 +1,34 @@
 import { invariant } from '@epic-web/invariant'
 import { getMDXComponent } from 'mdx-bundler/client'
 import { useMemo } from 'react'
-import { useLoaderData } from 'react-router'
+import { data, useLoaderData } from 'react-router'
 import { Icon } from '#app/components/ui/icon.tsx'
 import { getMDXPage } from '#app/utils/custom-utils/mdx.server.ts'
+import { pipeHeaders } from '#app/utils/headers.server.ts'
+import { getDomainUrl } from '#app/utils/misc.tsx'
 import BlogPage from './+components/blogPage.tsx'
 import { type Route } from './+types/blog_.$slug.ts'
-import { getDomainUrl } from '#app/utils/misc.tsx'
 
 export async function loader({ params, request }: Route.LoaderArgs) {
 	const { slug } = params
 	invariant(slug, 'Blog id is required')
 	const blog = await getMDXPage({ dir: 'blogs', slug })
-	return {
-		blog,
-		domainUrl: getDomainUrl(request),
-		slug,
-		headers: {
-			'Cache-Control': 'public, max-age=3600',
+	return data(
+		{
+			blog,
+			domainUrl: getDomainUrl(request),
+			slug,
 		},
-	}
+		{
+			headers: {
+				'Cache-Control':
+					'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
+			},
+		},
+	)
 }
+
+export const headers: Route.HeadersFunction = pipeHeaders
 
 export const meta: Route.MetaFunction = ({ loaderData }) => [
 	{
@@ -39,7 +47,11 @@ export default function Blog() {
 	const Component = useMemo(() => getMDXComponent(blog.code), [blog.code])
 	return (
 		<>
-			<BlogPage frontMatter={blog.frontmatter} domainUrl={domainUrl} slug={slug}>
+			<BlogPage
+				frontMatter={blog.frontmatter}
+				domainUrl={domainUrl}
+				slug={slug}
+			>
 				<Component
 					components={{
 						figcaption: (caption) => {
