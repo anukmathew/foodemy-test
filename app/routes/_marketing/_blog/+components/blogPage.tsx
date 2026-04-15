@@ -112,6 +112,7 @@ export default function BlogPage({
 						<AvatarImage
 							src={frontMatter.author.avatar}
 							className="translate-y-0.5"
+							alt={frontMatter.author.name}
 						/>
 						<AvatarFallback className="text-secondary-foreground">
 							{frontMatter.author.name

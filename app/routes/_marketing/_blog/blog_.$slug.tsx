@@ -30,16 +30,46 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 
 export const headers: Route.HeadersFunction = pipeHeaders
 
-export const meta: Route.MetaFunction = ({ loaderData }) => [
-	{
-		title: loaderData?.blog.frontmatter.title || 'Blog | Foodemy',
-	},
-	{
-		name: 'description',
-		content:
-			loaderData?.blog.frontmatter.description || 'A blog post from Foodemy',
-	},
-]
+export const meta: Route.MetaFunction = ({ loaderData }) => {
+	const title = loaderData?.blog.frontmatter.title || 'Blog | Foodemy'
+	const description =
+		loaderData?.blog.frontmatter.description || 'A blog post from Foodemy'
+	const image = loaderData?.blog.frontmatter.bannerImage || ''
+	const url = `${loaderData?.domainUrl}/blog/${loaderData?.slug}`
+	const keywords = loaderData?.blog.frontmatter.tags?.join(', ') || ''
+	const author = loaderData?.blog.frontmatter.author?.name || ''
+
+	return [
+		// Basic SEO
+		{ title },
+		{ name: 'description', content: description },
+		{ name: 'keywords', content: keywords },
+		{ name: 'author', content: author },
+
+		// Open Graph (CRITICAL for Reddit, LinkedIn, WhatsApp)
+		{ property: 'og:site_name', content: 'Foodemy' },
+		{ property: 'og:title', content: title },
+		{ property: 'og:description', content: description },
+		{ property: 'og:image', content: image },
+		{ property: 'og:url', content: url },
+		{ property: 'og:type', content: 'article' },
+
+		// Optional but good
+		{ property: 'og:image:alt', content: title },
+		{ property: 'og:image:width', content: '1200' },
+		{ property: 'og:image:height', content: '630' },
+
+		// Twitter
+		{
+			name: 'twitter:card',
+			content: image ? 'summary_large_image' : 'summary',
+		},
+		{ name: 'twitter:title', content: title },
+		{ name: 'twitter:description', content: description },
+		{ name: 'twitter:image', content: image },
+		{ name: 'twitter:url', content: url },
+	]
+}
 
 export default function Blog() {
 	const { blog, domainUrl, slug } = useLoaderData<typeof loader>()
@@ -86,11 +116,11 @@ export function ErrorBoundary({ error }: { error: Error | Response }) {
 	)
 }
 
-export const links: Route.LinksFunction = () => {
-	return [
-		{
-			rel: 'stylesheet',
-			href: 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css',
-		},
-	].filter(Boolean)
-}
+// export const links: Route.LinksFunction = () => {
+// 	return [
+// 		{
+// 			rel: 'stylesheet',
+// 			href: 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css',
+// 		},
+// 	].filter(Boolean)
+// }

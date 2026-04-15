@@ -12,7 +12,7 @@ function FeaturedBlog({ blog, slug }: { blog: BlogFrontmatter; slug: string }) {
 	return (
 		<Link
 			to={`/blog/${slug}`}
-			className="flex h-[600px] flex-col overflow-hidden rounded-4xl bg-cover bg-center shadow-md"
+			className="flex h-[600px] flex-col overflow-hidden rounded-4xl bg-cover bg-center no-underline shadow-md"
 			style={{ backgroundImage: `url('${blog.bannerImage}')` }}
 			prefetch="intent"
 		>
