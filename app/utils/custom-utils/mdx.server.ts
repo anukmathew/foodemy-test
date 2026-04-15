@@ -12,7 +12,17 @@ import remarkMath from 'remark-math'
 export type BlogFrontmatter = {
 	title: string
 	date: string
-	author: { name: string; avatar?: string }
+	author: {
+		name: string
+		avatar?: string
+		socials?: {
+			twitter?: string
+			instagram?: string
+			linkedin?: string
+			facebook?: string
+			youtube?: string
+		}
+	}
 	bannerImage: string
 	tags: string[]
 	description: string
