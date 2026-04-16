@@ -12,7 +12,7 @@ function FeaturedBlog({ blog, slug }: { blog: BlogFrontmatter; slug: string }) {
 	return (
 		<Link
 			to={`/blog/${slug}`}
-			className="flex flex-col overflow-hidden rounded-4xl bg-cover bg-center no-underline shadow-md lg:h-[600px]"
+			className="border-primary flex flex-col overflow-hidden rounded-4xl border bg-cover bg-center no-underline shadow-xs lg:h-[600px]"
 			style={{
 				backgroundImage: `url('resources/images?src=${blog.bannerImage}&format=webp&w=1200&h=800&fit=cover')`,
 			}}

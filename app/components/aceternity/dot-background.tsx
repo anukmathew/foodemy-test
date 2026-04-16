@@ -2,7 +2,7 @@ import { cn } from '#app/utils/misc.tsx'
 
 export function DotBackground({ children }: { children: React.ReactNode }) {
 	return (
-		<section className="from-primary-soft relative flex min-h-[calc(100dvh-(--spacing(48)))] w-full items-center justify-center bg-linear-to-tr via-white via-30% to-white max-lg:min-h-min dark:bg-black">
+		<section className="from-destructive/20 relative flex min-h-[calc(100dvh-(--spacing(48)))] w-full items-center justify-center bg-linear-to-tr via-white via-30% to-white max-lg:min-h-min dark:bg-black">
 			<div
 				className={cn(
 					'absolute inset-0',

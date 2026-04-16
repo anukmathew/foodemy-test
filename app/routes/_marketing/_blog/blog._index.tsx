@@ -38,26 +38,28 @@ export default function Blog() {
 	const featuredBlog = sortedBlogs[0]!
 
 	return (
-		<div className="container flex flex-col gap-12 bg-white py-36">
-			<section aria-labelledby="featured" className="">
-				<h2 id="featured" className="sr-only">
-					Featured article
-				</h2>
-				<FeaturedBlog
-					blog={featuredBlog?.frontmatter}
-					slug={featuredBlog?.slug}
-				/>
-			</section>
-			<section
-				id="all-articles"
-				className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
-			>
-				{sortedBlogs.slice(1).map((blog) => (
-					<div key={blog.slug} className="text-lg">
-						<BlogCard blog={blog.frontmatter} slug={blog.slug} />
-					</div>
-				))}
-			</section>
+		<div className="bg-background">
+			<div className="container flex flex-col gap-12 py-36">
+				<section aria-labelledby="featured" className="">
+					<h2 id="featured" className="sr-only">
+						Featured article
+					</h2>
+					<FeaturedBlog
+						blog={featuredBlog?.frontmatter}
+						slug={featuredBlog?.slug}
+					/>
+				</section>
+				<section
+					id="all-articles"
+					className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+				>
+					{sortedBlogs.slice(1).map((blog) => (
+						<div key={blog.slug} className="text-lg">
+							<BlogCard blog={blog.frontmatter} slug={blog.slug} />
+						</div>
+					))}
+				</section>
+			</div>
 		</div>
 	)
 }

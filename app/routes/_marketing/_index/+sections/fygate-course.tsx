@@ -2,7 +2,7 @@ import { motion } from 'motion/react'
 
 export default function WhatIsFygate() {
 	return (
-		<section className="w-full shadow-xl inset-shadow-2xs">
+		<section className="bg-background w-full shadow-xl inset-shadow-2xs">
 			<motion.div
 				initial={{ opacity: 0.0, x: -80 }}
 				whileInView={{ opacity: 1, x: 0 }}

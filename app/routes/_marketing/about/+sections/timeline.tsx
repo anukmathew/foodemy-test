@@ -76,7 +76,7 @@ export default function FoodemyTimeline() {
 		},
 	]
 	return (
-		<section className="w-full bg-white shadow-xl inset-shadow-2xs">
+		<section className="bg-background w-full shadow-xl inset-shadow-2xs">
 			<motion.div
 				initial={{ opacity: 0.0, y: 80 }}
 				whileInView={{ opacity: 1, y: 0 }}

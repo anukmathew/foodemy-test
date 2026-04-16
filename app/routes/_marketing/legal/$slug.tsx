@@ -11,15 +11,7 @@ export async function loader({ params }: Route.LoaderArgs) {
 	const { slug } = params
 	invariant(slug, 'An id is required')
 	const page = await getMDXPage({ dir: 'legal', slug })
-	return data(
-		{ page },
-		{
-			headers: {
-				'Cache-Control':
-					'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
-			},
-		},
-	)
+	return data({ page })
 }
 
 export const headers: Route.HeadersFunction = pipeHeaders

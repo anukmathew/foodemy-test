@@ -98,7 +98,7 @@ export default function Contact() {
 	})
 
 	return (
-		<section className="w-full">
+		<section className="bg-background w-full">
 			<div className="container py-48">
 				<div className="grid grid-cols-1 grid-rows-3 gap-6 lg:grid-cols-2">
 					<div className="bg-card border-muted row-span-3 flex flex-col rounded-2xl border p-8 py-12 shadow-sm inset-shadow-2xs">
