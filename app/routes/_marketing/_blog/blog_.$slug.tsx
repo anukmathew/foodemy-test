@@ -6,6 +6,7 @@ import { Icon } from '#app/components/ui/icon.tsx'
 import { getMDXPage } from '#app/utils/custom-utils/mdx.server.ts'
 import { pipeHeaders } from '#app/utils/headers.server.ts'
 import { getDomainUrl } from '#app/utils/misc.tsx'
+import { BlogImage } from './+components/blogImage.tsx'
 import BlogPage from './+components/blogPage.tsx'
 import { type Route } from './+types/blog_.$slug.ts'
 
@@ -84,6 +85,8 @@ export default function Blog() {
 			>
 				<Component
 					components={{
+						BlogImage,
+						img: (props) => <BlogImage {...props} />,
 						figcaption: (caption) => {
 							return (
 								<div className="text-muted-foreground/80 mt-4 flex items-center gap-2 text-sm">

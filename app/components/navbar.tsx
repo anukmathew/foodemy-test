@@ -74,7 +74,7 @@ export default function Navigation() {
 								key={`mobile-link-${idx}`}
 								href={item.link}
 								onClick={() => setIsMobileMenuOpen(false)}
-								className="relative text-neutral-600 dark:text-neutral-300"
+								className="relative text-neutral-600 no-underline dark:text-neutral-300"
 							>
 								<span className="block">{item.name}</span>
 							</a>

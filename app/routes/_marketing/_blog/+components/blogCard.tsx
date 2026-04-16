@@ -28,7 +28,7 @@ export function BlogCard({
 					<div className="overflow-hidden rounded-2xl">
 						<img
 							src={
-								blog.bannerImage ||
+								`/resources/images?src=${blog.bannerImage}&format=webp&w=1200&h=800&fit=cover` ||
 								'/placeholder.svg?height=360&width=640&query=blog-cover'
 							}
 							alt={`${blog.title} cover`}

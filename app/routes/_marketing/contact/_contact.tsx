@@ -24,7 +24,6 @@ import { Input } from '#app/components/ui/input.tsx'
 import { Textarea } from '#app/components/ui/textarea.tsx'
 import { honeypot } from '#app/utils/honeypot.server.ts'
 import { type Route } from './+types/_contact.ts'
-import { useState } from 'react'
 
 export async function action({ request }: Route.ActionArgs) {
 	const formData = await request.formData()
@@ -297,7 +296,7 @@ export default function Contact() {
 							</Form>
 						)}
 					</div>
-					<div className="row-span-2 hidden rounded-2xl bg-[url(/img/contact/contact.jpg)] bg-cover bg-center shadow-sm inset-shadow-2xs grayscale lg:flex"></div>
+					<div className="row-span-2 hidden rounded-2xl bg-[url(/resources/images?src=/img/contact/contact.jpg&format=webp&w=800&h=1200&fit=cover)] bg-cover bg-center shadow-sm inset-shadow-2xs grayscale lg:flex"></div>
 					<div className="bg-card border-muted flex flex-col justify-between gap-4 rounded-2xl border p-8 shadow-sm inset-shadow-2xs">
 						<ContactItem
 							iconName="phone"

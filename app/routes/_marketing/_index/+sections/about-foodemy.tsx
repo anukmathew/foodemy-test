@@ -12,7 +12,7 @@ function AboutValueItem({
 		<div className="flex flex-col gap-2">
 			<div className="flex items-center gap-1">
 				<AccentBar color="destructive" />
-				<h4 className="text-destructive font-semibold">{title}</h4>
+				<h3 className="text-destructive font-semibold">{title}</h3>
 			</div>
 			<p>{description}</p>
 		</div>
@@ -65,21 +65,21 @@ export default function AboutFoodemy() {
 				<div className="hidden grid-cols-2 grid-rows-2 gap-2 lg:grid">
 					<div className="row-span-2 overflow-hidden rounded-2xl">
 						<img
-							src="/img/about/about3.webp"
+							src="/resources/images?src=/img/about/about1.jpg&format=webp&w=800&h=1200&fit=contain"
 							alt=""
 							className="h-full object-cover transition duration-300 hover:scale-110"
 						/>
 					</div>
 					<div className="overflow-hidden rounded-2xl">
 						<img
-							src="/img/about/about1.webp"
+							src="/resources/images?src=/img/about/about2.jpg&format=webp&w=1200&h=800&fit=cover"
 							alt=""
 							className="h-full scale-125 object-cover transition duration-300 hover:scale-135"
 						/>
 					</div>
 					<div className="overflow-hidden rounded-2xl">
 						<img
-							src="/img/about/about2.webp"
+							src="/resources/images?src=/img/about/about3.jpg&format=webp&w=1200&h=800&fit=cover"
 							alt=""
 							className="h-full object-cover transition duration-300 hover:scale-110"
 						/>

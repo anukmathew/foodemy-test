@@ -18,7 +18,7 @@ export default function WhatIsFygate() {
 					{/* <div className="bg-primary-foreground absolute inset-0 -translate-x-6 -translate-y-6 rounded-2xl"></div> */}
 					<div className="relative overflow-hidden rounded-2xl">
 						<img
-							src={'/img/about-img.webp'}
+							src={'/resources/images?src=/img/about-img.webp&format=webp'}
 							alt="Hero Image"
 							className="h-full w-full object-cover"
 						/>

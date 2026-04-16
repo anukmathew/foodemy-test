@@ -26,7 +26,7 @@ export default function VisionMission() {
 			>
 				<div className="hidden h-96 flex-1/2 overflow-hidden rounded-2xl shadow-xl grayscale transition-all duration-300 group-hover:grayscale-0 sm:flex">
 					<img
-						src="/img/aboutUs/vision.webp"
+						src="/resources/images?src=/img/aboutUs/vision-mission.jpg&format=webp&w=1200&h=800&fit=cover"
 						alt="Vision and Mission"
 						className="h-full w-full object-cover transition duration-300 hover:scale-105"
 					/>

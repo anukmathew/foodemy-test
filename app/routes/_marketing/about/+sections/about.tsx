@@ -39,7 +39,7 @@ export default function About() {
 				</div>
 				<div className="relative hidden w-full flex-1/2 rounded-2xl shadow-xl lg:flex">
 					<img
-						src="/img/aboutUs/aboutUs.webp"
+						src="resources/images?src=/img/aboutUs/about-us.jpg&format=webp&w=1200&h=800&fit=cover"
 						alt="About Foodemy"
 						className="absolute z-10 h-full w-full -translate-x-8 translate-y-8 rounded-2xl object-cover"
 					/>

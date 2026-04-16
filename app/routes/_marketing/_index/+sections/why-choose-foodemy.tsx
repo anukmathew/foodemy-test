@@ -181,10 +181,10 @@ const VIDEO_CARDS = [
 ]
 
 const STUDY_MATERIALS = [
-	'/img/notes/note1.webp',
-	'/img/notes/note2.webp',
-	'/img/notes/note3.webp',
-	'/img/notes/note4.webp',
+	'/resources/images?src=/img/notes/note1.webp&format=webp&w=700&h=1000',
+	'/resources/images?src=/img/notes/note2.webp&format=webp&w=700&h=1000',
+	'/resources/images?src=/img/notes/note3.webp&format=webp&w=700&h=1000',
+	'/resources/images?src=/img/notes/note4.webp&format=webp&w=700&h=1000',
 ]
 
 const Noise = () => {

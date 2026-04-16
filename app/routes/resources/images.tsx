@@ -39,6 +39,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 		allowlistedOrigins: [
 			getDomainUrl(request),
 			process.env.AWS_ENDPOINT_URL_S3,
+			'https://fy-blog-images.t3.tigrisfiles.io',
 		].filter(Boolean),
 		cacheFolder: await getCacheDir(),
 		getImgSource: () => {

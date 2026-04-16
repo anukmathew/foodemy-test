@@ -12,8 +12,10 @@ function FeaturedBlog({ blog, slug }: { blog: BlogFrontmatter; slug: string }) {
 	return (
 		<Link
 			to={`/blog/${slug}`}
-			className="flex h-[600px] flex-col overflow-hidden rounded-4xl bg-cover bg-center no-underline shadow-md"
-			style={{ backgroundImage: `url('${blog.bannerImage}')` }}
+			className="flex flex-col overflow-hidden rounded-4xl bg-cover bg-center no-underline shadow-md lg:h-[600px]"
+			style={{
+				backgroundImage: `url('resources/images?src=${blog.bannerImage}&format=webp&w=1200&h=800&fit=cover')`,
+			}}
 			prefetch="intent"
 		>
 			<div className="text-muted/80 mt-auto flex flex-col gap-8 bg-linear-to-t from-black/70 from-60% to-transparent px-8 py-6 pt-24">
@@ -25,7 +27,7 @@ function FeaturedBlog({ blog, slug }: { blog: BlogFrontmatter; slug: string }) {
 					<h3 className="font-sans text-xl font-semibold text-pretty text-white md:text-3xl">
 						{blog.title}
 					</h3>
-					<p className="text-muted/80 leading-snug md:leading-relaxed">
+					<p className="text-muted/80 text-sm leading-snug md:text-base md:leading-relaxed">
 						{blog.description}
 					</p>
 				</div>

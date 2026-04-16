@@ -20,6 +20,7 @@ import { Separator } from '#app/components/ui/separator.tsx'
 import '#app/styles/blog.css'
 import { type BlogFrontmatter } from '#app/utils/custom-utils/mdx.server.ts'
 import { cn } from '#app/utils/misc.tsx'
+import { BlogImage } from './blogImage.tsx'
 
 export default function BlogPage({
 	frontMatter,
@@ -85,9 +86,13 @@ export default function BlogPage({
 				</div>
 
 				<div className="container flex max-h-96 items-center justify-center overflow-hidden rounded-2xl bg-red-50 p-0">
-					<img
+					<BlogImage
 						src={frontMatter.bannerImage}
 						alt={frontMatter.title}
+						width={1200}
+						height={800}
+						fit="contain"
+						format="webp"
 						className="w-full object-contain"
 					/>
 				</div>
@@ -107,10 +112,10 @@ export default function BlogPage({
 			</div>
 			<Separator />
 			<div className="flex w-full flex-col items-center justify-between gap-8 md:flex-row">
-				<div className="text-md flex items-center gap-4 font-medium">
+				<div className="text-md flex flex-col items-center gap-4 font-medium md:flex-row">
 					<Avatar className="bg-primary size-12">
 						<AvatarImage
-							src={frontMatter.author.avatar}
+							src={`/resources/images?src=${frontMatter.author.avatar}&w=96&h=96&fit=cover&format=webp`}
 							className="translate-y-0.5"
 							alt={frontMatter.author.name}
 						/>
@@ -122,7 +127,7 @@ export default function BlogPage({
 						</AvatarFallback>
 					</Avatar>
 					<div>
-						<div className="flex flex-col gap-1">
+						<div className="flex flex-col items-center gap-1 md:items-start">
 							<span className="text-primary-foreground font-semibold">
 								{frontMatter.author.name}
 							</span>
