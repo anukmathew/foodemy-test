@@ -11,7 +11,7 @@ export default function Hero() {
 			<div className="container mx-auto flex flex-col items-center gap-12 pt-25 pb-24 md:pt-30 lg:flex-row xl:min-h-[calc(100dvh-(--spacing(48)))] 2xl:min-h-fit">
 				<div className="flex flex-2/3 flex-col items-center gap-12 text-center lg:items-start lg:text-left">
 					<div className="flex flex-col gap-6">
-						<h1 className="text-secondary font-serif text-3xl leading-tight font-semibold tracking-tight md:text-6xl">
+						<h1 className="text-primary-foreground font-serif text-3xl leading-tight font-semibold tracking-tight md:text-6xl">
 							Master GATE XE/XL Food Technology
 							<br /> with{' '}
 							<TypewriterEffectSmooth
@@ -62,7 +62,7 @@ export default function Hero() {
 							<div className="-rotate-2 overflow-hidden rounded-4xl bg-white p-4">
 								<img
 									src={
-										'/resources/images?src=/img/hero.png&w=900&h=1200&format=webp&fit=cover'
+										'/resources/images?src=/img/index/hero.png&w=900&h=1200&format=webp&fit=cover'
 									}
 									alt="Hero Image"
 									className="max-h-[calc(60dvh)] rounded-2xl object-cover"

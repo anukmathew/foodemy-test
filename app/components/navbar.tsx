@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
-import { HoverBorderGradient } from '#app/components/aceternity/hover-border-gradient.tsx'
 import {
 	MobileNav,
 	MobileNavHeader,
@@ -40,7 +39,7 @@ export default function Navigation() {
 	return (
 		<>
 			<div className="fixed inset-0 z-30 h-25">
-				<div className="from-primary-soft/50 absolute inset-0 bg-gradient-to-b to-transparent mask-b-from-50% mask-b-to-transparent backdrop-blur-3xl" />
+				<div className="from-muted/50 absolute inset-0 bg-linear-to-b to-transparent mask-b-from-50% mask-b-to-transparent backdrop-blur-3xl" />
 			</div>
 
 			<Navbar>

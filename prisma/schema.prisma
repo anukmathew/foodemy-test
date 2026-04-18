@@ -27,6 +27,9 @@ model User {
   sessions    Session[]
   connections Connection[]
   passkey     Passkey[]
+
+  purchases   Purchase[]
+  enrollments Enrollment[]
 }
 
 model Note {
@@ -183,4 +186,295 @@ model Passkey {
   transports     String? // Stored as comma-separated values
 
   @@index(userId)
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CATALOGUE LAYER
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// Top-level exam grouping — e.g. "GATE", "NET".
+/// The course listing page groups all packages by their parent CourseCategory.
+/// This replaces the old Course model — "GATE" is the category, the packages
+/// (XE, XL, etc.) are what actually get sold.
+model CourseCategory {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String // e.g. "GATE"
+  slug        String  @unique
+  description String?
+  // General info shown on every package page within this category —
+  // e.g. exam pattern, eligibility, important dates overview
+  generalInfo String?
+  isActive    Boolean @default(true)
+
+  packages       CoursePackage[]
+  // Implicit m-n — Prisma manages the join table automatically.
+  // Make explicit only if you need sortOrder on the relationship.
+  whatYouWillGet WhatYouWillGet[]
+}
+
+/// A benefit shown on the category/package pages — e.g. "Live doubt sessions".
+/// Shared across categories via implicit many-to-many.
+model WhatYouWillGet {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title       String
+  description String
+  iconUrl     String?
+  sortOrder   Int     @default(0)
+
+  // Implicit m-n with CourseCategory
+  categories CourseCategory[]
+}
+
+/// A purchasable package — e.g. "XE – Thermodynamics", "XL – Microbiology".
+/// Subjects are stable across years; pricing and access live in YearlyProduct.
+model CoursePackage {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String // e.g. "XE – Thermodynamics"
+  slug        String  @unique
+  description String?
+  // Stream-level info specific to XE or XL — shown on this package's page
+  streamInfo  String?
+  isActive    Boolean @default(true)
+
+  category   CourseCategory @relation(fields: [categoryId], references: [id])
+  categoryId String
+
+  sortOrder Int // for ordering packages within a category
+
+  // Implicit m-n — Prisma manages the join table.
+  // Promote to explicit (PackageSubject) only if you need sortOrder per package.
+  subjects       Subject[]
+  modules        Module[]
+  yearlyProducts YearlyProduct[]
+}
+
+/// A subject — e.g. "General Aptitude", "Thermodynamics", "Microbiology".
+/// Subjects are shared across packages (e.g. "Food Technology" appears in all 5).
+/// Owned at the category level implicitly via their topics and packages.
+model Subject {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name         String
+  abbreviation String
+  description  String?
+  sortOrder    Int     @default(0)
+  isActive     Boolean @default(true)
+
+  // Implicit m-n with CoursePackage
+  packages CoursePackage[]
+  topics   Topic[]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CONTENT LAYER — defined once, reused across all years and batches
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// A topic belongs to a subject — e.g. "First Law of Thermodynamics".
+/// Topics are permanent content nodes bundled into Modules for release.
+model Topic {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String
+  description String?
+  sortOrder   Int     @default(0)
+  isActive    Boolean @default(true)
+
+  subject   Subject @relation(fields: [subjectId], references: [id])
+  subjectId String
+
+  // Implicit m-n with Module — Prisma manages the join table.
+  // Promote to explicit (ModuleTopic) only if you need sortOrder per module.
+  modules        Module[]
+  videoLectures  VideoLecture[]
+  studyMaterials StudyMaterial[]
+}
+
+model VideoLecture {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title       String
+  description String?
+  url         String? // full-access URL (served behind auth)
+  demoUrl     String? // free preview URL
+  duration    Int // in seconds
+  sortOrder   Int      @default(0)
+  lastUpdated DateTime @default(now())
+
+  topic   Topic  @relation(fields: [topicId], references: [id])
+  topicId String
+}
+
+model StudyMaterial {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title       String
+  description String?
+  url         String? // full-access URL (served behind auth)
+  demoUrl     String? // free preview URL
+  pages       Int
+  sortOrder   Int      @default(0)
+  lastUpdated DateTime @default(now())
+
+  topic   Topic  @relation(fields: [topicId], references: [id])
+  topicId String
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MODULE LAYER
+// Modules belong to a CoursePackage (not a Subject) so they can bundle topics
+// from multiple subjects in one release unit.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// A module — e.g. "Module 1 – Foundations".
+/// Topics from multiple subjects can appear in the same module.
+/// The release date is set per batch via BatchModule, not here.
+model Module {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String
+  description String?
+  sortOrder   Int     @default(0)
+
+  package   CoursePackage @relation(fields: [packageId], references: [id])
+  packageId String
+
+  // Implicit m-n with Topic
+  topics       Topic[]
+  batchModules BatchModule[]
+
+  @@unique([packageId, name])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// COMMERCIAL LAYER
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// One record per (package × exam year).
+/// Create a new row each year — never mutate the previous year's record.
+/// This is the permanent SKU that appears on invoices.
+model YearlyProduct {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  year            Int // e.g. 2026
+  displayName     String // e.g. "XE – Thermodynamics | GATE 2026" — denormalised for invoicing
+  price           Int // in paise (49900 = ₹499.00) — avoids floating-point issues
+  discountedPrice Int? // in paise
+  accessEndsAt    DateTime // content locks after this — typically Dec 31 of exam year
+  isActive        Boolean  @default(true)
+
+  package   CoursePackage @relation(fields: [packageId], references: [id])
+  packageId String
+
+  batches   Batch[]
+  purchases Purchase[]
+
+  @@unique([packageId, year])
+}
+
+/// A batch — e.g. "Early Bird Batch", "Weekend Batch".
+/// Multiple batches per YearlyProduct, each with its own module release schedule.
+model Batch {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name      String
+  startDate DateTime
+  endDate   DateTime
+  isActive  Boolean  @default(true)
+
+  yearlyProduct   YearlyProduct @relation(fields: [yearlyProductId], references: [id])
+  yearlyProductId String
+
+  batchModules BatchModule[]
+  enrollments  Enrollment[]
+
+  @@unique([yearlyProductId, name])
+}
+
+/// Links a Module to a Batch with a specific release date.
+/// Explicit join table (not implicit) because releaseDate lives on this relationship.
+/// The same Module 1 content can release on different dates for different batches.
+model BatchModule {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  releaseDate DateTime
+
+  batch    Batch  @relation(fields: [batchId], references: [id])
+  batchId  String
+  module   Module @relation(fields: [moduleId], references: [id])
+  moduleId String
+
+  @@unique([batchId, moduleId])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// USER LAYER
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// Permanent record of a user buying a YearlyProduct.
+/// Snapshot fields are copied at purchase time — the invoice never changes
+/// even if the YearlyProduct record is later edited or the package is renamed.
+model Purchase {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Immutable invoice snapshot
+  snapshotName String // copied from YearlyProduct.displayName at time of purchase
+  snapshotYear Int // copied from YearlyProduct.year
+  amountPaid   Int // in paise
+  currency     String   @default("INR")
+  // "PENDING" | "COMPLETED" | "REFUNDED" | "FAILED"
+  status       String   @default("COMPLETED")
+  paymentRef   String? // razorpay / stripe payment ID
+  purchasedAt  DateTime @default(now())
+
+  user            User          @relation(fields: [userId], references: [id])
+  userId          String
+  yearlyProduct   YearlyProduct @relation(fields: [yearlyProductId], references: [id])
+  yearlyProductId String
+
+  // Enforces one purchase per (user × yearly product) at the DB level
+  @@unique([userId, yearlyProductId])
+}
+
+/// Assigns a student to a specific Batch after purchase.
+/// Separate from Purchase so batch reassignment never touches purchase history.
+model Enrollment {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  joinedAt DateTime @default(now())
+
+  user    User   @relation(fields: [userId], references: [id])
+  userId  String
+  batch   Batch  @relation(fields: [batchId], references: [id])
+  batchId String
+
+  @@unique([userId, batchId])
 }

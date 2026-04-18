@@ -1,78 +1,78 @@
 import { LogoSoup } from '@sanity-labs/logo-soup/react'
-import { InfiniteMovingLogos } from '#app/components/aceternity/infinite-moving-logos.tsx'
 import _ from 'lodash'
+import { InfiniteMovingLogos } from '#app/components/aceternity/infinite-moving-logos.tsx'
 
 export const uniLogos: { src: string; alt: string }[] = [
 	{
-		src: '/resources/images?src=/img/uni/tezpur_uni.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/tezpur_uni.svg&format=webp&w=200&h=200',
 		alt: 'Tezpur University Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/ict_mumbai.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/ict_mumbai.svg&format=webp&w=200&h=200',
 		alt: 'ICT Mumbai Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/niftem_k.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/niftem_k.svg&format=webp&w=200&h=200',
 		alt: 'NIFTEM Kundli Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/aks.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/aks.svg&format=webp&w=200&h=200',
 		alt: 'AKS University, Satna Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/amity.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/amity.svg&format=webp&w=200&h=200',
 		alt: 'Amity University Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/angrau.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/angrau.svg&format=webp&w=200&h=200',
 		alt: 'ANGRAU Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/anna.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/anna.svg&format=webp&w=200&h=200',
 		alt: 'Anna University Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/bhu.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/bhu.svg&format=webp&w=200&h=200',
 		alt: 'Benaras Hindu University Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/bit_mesra.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/bit_mesra.svg&format=webp&w=200&h=200',
 		alt: 'BIT Mesra Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/cu.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/cu.svg&format=webp&w=200&h=200',
 		alt: 'Chandigarh University Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/dypatu.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/dypatu.svg&format=webp&w=200&h=200',
 		alt: 'DYPATIL University Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/gbu.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/gbu.svg&format=webp&w=200&h=200',
 		alt: 'Gautam Buddha University Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/gjust.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/gjust.svg&format=webp&w=200&h=200',
 		alt: 'GJUST Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/gkciet.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/gkciet.svg&format=webp&w=200&h=200',
 		alt: 'Ghani Khan Choudhury Institute of Engineering & Technology Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/makaut.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/makaut.svg&format=webp&w=200&h=200',
 		alt: 'MAKAUT Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/mit.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/mit.svg&format=webp&w=200&h=200',
 		alt: 'MIT Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/sharda.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/sharda.svg&format=webp&w=200&h=200',
 		alt: 'Sharda University Logo',
 	},
 	{
-		src: '/resources/images?src=/img/uni/tnau.svg&format=webp&w=200&h=200',
+		src: '/resources/images?src=/img/index/uni/tnau.svg&format=webp&w=200&h=200',
 		alt: 'TNAU Logo',
 	},
 

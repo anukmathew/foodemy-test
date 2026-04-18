@@ -20,14 +20,14 @@ const testimonials = [
 		name: 'Aarav Sharma',
 		title: 'GATE 2022 Topper',
 		image:
-			'/resources/images?src=/img/students/1.jpg&format=webp&format=webp&w=200&h=200',
+			'/resources/images?src=/img/index/students/1.jpg&format=webp&format=webp&w=200&h=200',
 	},
 	{
 		quote: 'I highly recommend Foodemy for GATE preparation.',
 		name: 'Vikram Singh',
 		title: 'GATE 2022 Topper',
 		image:
-			'/resources/images?src=/img/students/1.jpg&format=webp&format=webp&w=200&h=200',
+			'/resources/images?src=/img/index/students/2.jpg&format=webp&format=webp&w=200&h=200',
 	},
 	{
 		quote:
@@ -35,7 +35,7 @@ const testimonials = [
 		name: 'Priya Gupta',
 		title: 'GATE 2022 Topper',
 		image:
-			'/resources/images?src=/img/students/2.jpg&format=webp&format=webp&w=200&h=200',
+			'/resources/images?src=/img/index/students/3.jpg&format=webp&format=webp&w=200&h=200',
 	},
 	{
 		quote:
@@ -43,13 +43,13 @@ const testimonials = [
 		name: 'Rohan Verma',
 		title: 'GATE 2022 Topper',
 		image:
-			'/resources/images?src=/img/students/3.jpg&format=webp&format=webp&w=200&h=200',
+			'/resources/images?src=/img/index/students/4.jpg&format=webp&format=webp&w=200&h=200',
 	},
 	{
 		quote: 'Foodemy’s mock tests were very helpful in my preparation.',
 		name: 'Sneha Patel',
 		title: 'GATE 2022 Topper',
 		image:
-			'/resources/images?src=/img/students/4.jpg&format=webp&format=webp&w=200&h=200',
+			'/resources/images?src=/img/index/students/5.jpg&format=webp&format=webp&w=200&h=200',
 	},
 ]

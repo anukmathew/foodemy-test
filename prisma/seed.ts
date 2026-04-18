@@ -1,250 +1,524 @@
-import { faker } from '@faker-js/faker'
+import { type Permission as _Permission, type Subject } from '@prisma/client'
 import { prisma } from '#app/utils/db.server.ts'
-import { MOCK_CODE_GITHUB } from '#app/utils/providers/constants.ts'
-import {
-	createPassword,
-	createUser,
-	getNoteImages,
-	getUserImages,
-} from '#tests/db-utils.ts'
-import { insertGitHubUser } from '#tests/mocks/github.ts'
+import { bcSyllabus } from '../other/syllabus/bc'
+import { chSyllabus } from '../other/syllabus/ch'
+import { emSyllabus } from '../other/syllabus/em'
+import { ftSyllabus } from '../other/syllabus/ft'
+import { gaSyllabus } from '../other/syllabus/ga'
+import { mbSyllabus } from '../other/syllabus/mb'
+import { thSyllabus } from '../other/syllabus/th'
 
-async function seed() {
-	console.log('🌱 Seeding...')
-	console.time(`🌱 Database has been seeded`)
+const features = [
+	{
+		title: 'High Quality Video Lectures',
+		description:
+			'Our expert faculty brings their wealth of knowledge and teaching experience to deliver high-quality video lectures. These engaging and informative sessions ensure you grasp even the most complex concepts with ease, at your own pace.',
+	},
+	{
+		title: 'Crisp and Concise Study Materials',
+		description:
+			'We provide you with crisp and concise study materials, eliminating the need for exhaustive searches through numerous books. Our materials are thoughtfully curated, focusing on the most relevant GATE syllabus topics, saving you valuable time and effort.',
+	},
+	{
+		title: 'Solved Previous Year Questions',
+		description:
+			"Access to solved previous year questions helps you understand the exam's pattern and gain insight into the frequently asked topics, giving you the competitive edge you need.",
+	},
+	{
+		title: 'Practice Questions',
+		description:
+			'Practice makes perfect! Our extensive repository of practice questions challenges your problem-solving skills and reinforces your understanding of the subject matter, ensuring you are well-prepared to tackle any GATE question.',
+	},
+	{
+		title: 'Mentorship from Subject Experts',
+		description:
+			'At fyGATE, we believe in providing personalized attention. Benefit from mentorship from our experienced subject experts who guide you throughout your GATE preparation journey, offering valuable insights and support.',
+	},
+	{
+		title: 'Mock Test on Dedicated Platform',
+		description:
+			'Evaluate your progress and build confidence with our mock tests conducted on dedicated platform. These tests simulate the actual GATE exam environment, preparing you to excel on the big day.',
+	},
+	{
+		title: 'Doubt Clearance Sessions',
+		description:
+			'We understand that doubts can hinder progress. Our dedicated doubt clearance systems offer you the opportunity to seek clarifications on any topic, leaving no room for confusion.',
+	},
+	{
+		title: 'Personal Mentoring Sessions',
+		description:
+			'Our commitment to your success goes beyond conventional coaching. Personal mentoring sessions allow you to interact one-on-one with our faculty, enabling customized learning and addressing specific challenges.',
+	},
+]
 
-	const totalUsers = 5
-	console.time(`👤 Created ${totalUsers} users...`)
-	const noteImages = await getNoteImages()
-	const userImages = await getUserImages()
+const subjectDefinitions = [
+	{
+		name: 'General Aptitude',
+		abbreviation: 'GA',
+		description: 'General aptitude topics common across GATE streams.',
+		sortOrder: 1,
+	},
+	{
+		name: 'Engineering Mathematics',
+		abbreviation: 'EM',
+		description: 'Engineering mathematics for GATE XE streams.',
+		sortOrder: 2,
+	},
+	{
+		name: 'Thermodynamics',
+		abbreviation: 'TH',
+		description: 'Thermodynamics syllabus for GATE XE.',
+		sortOrder: 3,
+	},
+	{
+		name: 'Food Technology',
+		abbreviation: 'FT',
+		description:
+			'Core food technology syllabus shared across XE and XL packages.',
+		sortOrder: 4,
+	},
+	{
+		name: 'Chemistry',
+		abbreviation: 'CH',
+		description: 'Chemistry topics used in GATE XL streams.',
+		sortOrder: 5,
+	},
+	{
+		name: 'Biochemistry',
+		abbreviation: 'BC',
+		description: 'Biochemistry syllabus for GATE XL.',
+		sortOrder: 6,
+	},
+	{
+		name: 'Microbiology',
+		abbreviation: 'MB',
+		description: 'Microbiology syllabus for GATE XL.',
+		sortOrder: 7,
+	},
+] as const
 
-	for (let index = 0; index < totalUsers; index++) {
-		const userData = createUser()
-		const user = await prisma.user.create({
-			select: { id: true },
+const syllabusBySubject = {
+	GA: gaSyllabus,
+	EM: emSyllabus,
+	TH: thSyllabus,
+	FT: ftSyllabus,
+	CH: chSyllabus,
+	BC: bcSyllabus,
+	MB: mbSyllabus,
+} as const
+
+const packageDefinitions = [
+	{
+		name: 'XE Thermodynamics',
+		slug: 'xe-thermodynamics',
+		description:
+			'Complete GATE XE package focused on thermodynamics with shared aptitude and food technology coverage.',
+		streamInfo:
+			'Includes General Aptitude, Engineering Mathematics, Thermodynamics, and Food Technology.',
+		subjectAbbreviations: ['GA', 'EM', 'TH', 'FT'],
+		price: 1999900,
+		discountedPrice: 1499900,
+		sortOrder: 3,
+	},
+	{
+		name: 'XL Biochemistry',
+		slug: 'xl-biochemistry',
+		description:
+			'Complete GATE XL package for the biochemistry stream with chemistry and food technology support.',
+		streamInfo:
+			'Includes General Aptitude, Chemistry, Biochemistry, and Food Technology.',
+		subjectAbbreviations: ['GA', 'CH', 'BC', 'FT'],
+		price: 1999900,
+		discountedPrice: 1499900,
+		sortOrder: 2,
+	},
+	{
+		name: 'XL Microbiology',
+		slug: 'xl-microbiology',
+		description:
+			'Complete GATE XL package for microbiology with chemistry and food technology support.',
+		streamInfo:
+			'Includes General Aptitude, Chemistry, Microbiology, and Food Technology.',
+		subjectAbbreviations: ['GA', 'CH', 'MB', 'FT'],
+		price: 1999900,
+		discountedPrice: 1499900,
+		sortOrder: 1,
+	},
+	{
+		name: 'XL Food Technology',
+		slug: 'xl-food-technology',
+		description:
+			'Focused GATE XL package for food technology with chemistry support.',
+		streamInfo: 'Includes General Aptitude, Chemistry, and Food Technology.',
+		subjectAbbreviations: ['GA', 'CH', 'FT'],
+		price: 1699900,
+		discountedPrice: 1275000,
+		sortOrder: 4,
+	},
+	{
+		name: 'XE Food Technology',
+		slug: 'xe-food-technology',
+		description:
+			'Focused GATE XE package for food technology with engineering mathematics support.',
+		streamInfo:
+			'Includes General Aptitude, Engineering Mathematics, and Food Technology.',
+		subjectAbbreviations: ['GA', 'EM', 'FT'],
+		price: 1699900,
+		discountedPrice: 1275000,
+		sortOrder: 5,
+	},
+] as const
+
+const batchTemplates = [
+	{
+		name: '26B1',
+		startDate: new Date('2026-06-14T00:00:00.000Z'),
+		endDate: new Date('2027-02-06T23:59:59.999Z'),
+	},
+	{
+		name: '26B2',
+		startDate: new Date('2026-08-02T00:00:00.000Z'),
+		endDate: new Date('2027-02-06T23:59:59.999Z'),
+	},
+	{
+		name: '26B3',
+		startDate: new Date('2026-10-04T00:00:00.000Z'),
+		endDate: new Date('2027-02-06T23:59:59.999Z'),
+	},
+] as const
+
+const _actions = ['create', 'read', 'update', 'delete'] as const
+const _entities = ['user', 'note'] as const
+const _accesses = ['own', 'any'] as const
+
+function getModuleName(moduleKey: string) {
+	return `Module ${moduleKey}`
+}
+
+function getModuleSortOrder(moduleKey: string) {
+	const parsed = Number(moduleKey)
+	return Number.isNaN(parsed) ? 0 : parsed
+}
+
+function addDays(date: Date, days: number) {
+	const next = new Date(date)
+	next.setUTCDate(next.getUTCDate() + days)
+	return next
+}
+
+type SyllabusEntry = {
+	title?: string
+	description?: string
+	studyMaterialDemoUrl?: string[]
+	videoDemoUrl?: string[]
+}
+
+function buildStudyMaterials(entry: SyllabusEntry, index: number) {
+	const demoUrls = entry.studyMaterialDemoUrl?.filter(Boolean) ?? []
+
+	if (demoUrls.length > 0) {
+		return demoUrls.map((demoUrl, demoIndex) => ({
+			title:
+				demoUrls.length === 1
+					? `${entry.title} Study Material`
+					: `${entry.title} Study Material ${demoIndex + 1}`,
+			description: entry.description || undefined,
+			demoUrl,
+			pages: 10 + index * 2,
+			sortOrder: demoIndex + 1,
+		}))
+	}
+
+	return [
+		{
+			title: `${entry.title} Study Material`,
+			description: entry.description || undefined,
+			pages: 10 + index * 2,
+			sortOrder: 1,
+		},
+	]
+}
+
+function buildVideoLectures(entry: SyllabusEntry, index: number) {
+	const demoUrls = entry.videoDemoUrl?.filter(Boolean) ?? []
+
+	if (demoUrls.length > 0) {
+		return demoUrls.map((demoUrl, demoIndex) => ({
+			title:
+				demoUrls.length === 1
+					? `${entry.title} Video Lecture`
+					: `${entry.title} Video Lecture ${demoIndex + 1}`,
+			description: entry.description || undefined,
+			demoUrl,
+			duration: 900 + index * 300,
+			sortOrder: demoIndex + 1,
+		}))
+	}
+
+	return [
+		{
+			title: `${entry.title} Video Lecture`,
+			description: entry.description || undefined,
+			duration: 900 + index * 300,
+			sortOrder: 1,
+		},
+	]
+}
+
+// async function seedPermissions() {
+// 	const permissions: Array<Permission> = await Promise.all(
+// 		actions.flatMap((action) =>
+// 			entities.flatMap((entity) =>
+// 				accesses.map((access) =>
+// 					prisma.permission.create({
+// 						data: {
+// 							action,
+// 							entity,
+// 							access,
+// 							description: `Allows ${action} on ${access} ${entity} records`,
+// 						},
+// 					}),
+// 				),
+// 			),
+// 		),
+// 	)
+
+// 	const permissionsByKey = new Map<string, string>(
+// 		permissions.map((permission) => [
+// 			`${permission.action}:${permission.entity}:${permission.access}`,
+// 			permission.id,
+// 		]),
+// 	)
+
+// 	const userPermissionKeys = [
+// 		'create:note:own',
+// 		'read:note:own',
+// 		'update:note:own',
+// 		'delete:note:own',
+// 		'read:user:own',
+// 		'update:user:own',
+// 	]
+
+// 	await prisma.role.create({
+// 		data: {
+// 			name: 'admin',
+// 			description: 'Administrator with access to every permission.',
+// 			permissions: {
+// 				connect: permissions.map((permission) => ({ id: permission.id })),
+// 			},
+// 		},
+// 	})
+
+// 	await prisma.role.create({
+// 		data: {
+// 			name: 'user',
+// 			description: 'Standard user with self-service permissions.',
+// 			permissions: {
+// 				connect: userPermissionKeys.map((key) => {
+// 					const permissionId = permissionsByKey.get(key)
+// 					if (!permissionId) {
+// 						throw new Error(`Missing permission ${key}`)
+// 					}
+
+// 					return { id: permissionId }
+// 				}),
+// 			},
+// 		},
+// 	})
+// }
+
+async function seedCatalogue() {
+	const category = await prisma.courseCategory.create({
+		data: {
+			name: 'GATE',
+			slug: 'gate',
+			description:
+				'GATE is a national level entrance exam for admission to M.Tech programs in India.',
+			generalInfo:
+				'Foodemy packages combine shared aptitude preparation with stream-specific content, staggered module releases, and long-tail access through the exam cycle.',
+			whatYouWillGet: {
+				create: features.map((feature, index) => ({
+					title: feature.title,
+					description: feature.description,
+					sortOrder: index + 1,
+				})),
+			},
+		},
+	})
+
+	await prisma.subject.createMany({
+		data: subjectDefinitions.map((subject) => ({
+			name: subject.name,
+			abbreviation: subject.abbreviation,
+			description: subject.description,
+			sortOrder: subject.sortOrder,
+		})),
+	})
+
+	const subjects: Array<Subject> = await prisma.subject.findMany()
+	const subjectsByAbbreviation = new Map<string, Subject>(
+		subjects.map((subject) => [subject.abbreviation, subject]),
+	)
+
+	const topicIdsBySubjectAndModule = new Map<string, string[]>()
+
+	for (const subjectDefinition of subjectDefinitions) {
+		const subject = subjectsByAbbreviation.get(subjectDefinition.abbreviation)
+		if (!subject) {
+			throw new Error(
+				`Subject ${subjectDefinition.abbreviation} was not created successfully`,
+			)
+		}
+
+		for (const [moduleKey, syllabusEntries] of Object.entries(
+			syllabusBySubject[subjectDefinition.abbreviation],
+		)) {
+			const createdTopicIds: string[] = []
+
+			for (const [index, rawEntry] of syllabusEntries.entries()) {
+				const entry = rawEntry as SyllabusEntry
+				if (!entry?.title) continue
+
+				const topic = await prisma.topic.create({
+					data: {
+						name: entry.title,
+						description: entry.description || undefined,
+						sortOrder: index + 1,
+						subjectId: subject.id,
+						studyMaterials: {
+							create: buildStudyMaterials(entry, index),
+						},
+						videoLectures: {
+							create: buildVideoLectures(entry, index),
+						},
+					},
+					select: { id: true },
+				})
+
+				createdTopicIds.push(topic.id)
+			}
+
+			topicIdsBySubjectAndModule.set(
+				`${subjectDefinition.abbreviation}:${moduleKey}`,
+				createdTopicIds,
+			)
+		}
+	}
+
+	for (const [
+		packageIndex,
+		packageDefinition,
+	] of packageDefinitions.entries()) {
+		const relatedSubjects = packageDefinition.subjectAbbreviations.map(
+			(abbreviation) => {
+				const subject = subjectsByAbbreviation.get(abbreviation)
+				if (!subject) {
+					throw new Error(
+						`Subject ${abbreviation} missing for ${packageDefinition.slug}`,
+					)
+				}
+				return subject
+			},
+		)
+
+		const coursePackage = await prisma.coursePackage.create({
 			data: {
-				...userData,
-				password: { create: createPassword(userData.username) },
-				roles: { connect: { name: 'user' } },
+				name: packageDefinition.name,
+				slug: packageDefinition.slug,
+				description: packageDefinition.description,
+				streamInfo: packageDefinition.streamInfo,
+				categoryId: category.id,
+				sortOrder: packageDefinition.sortOrder,
+				subjects: {
+					connect: relatedSubjects.map((subject) => ({ id: subject.id })),
+				},
 			},
 		})
 
-		// Upload user profile image
-		const userImage = userImages[index % userImages.length]
-		if (userImage) {
-			await prisma.userImage.create({
+		const moduleKeys = Array.from(
+			new Set(
+				packageDefinition.subjectAbbreviations.flatMap((abbreviation) =>
+					Object.keys(syllabusBySubject[abbreviation]),
+				),
+			),
+		).sort(
+			(left, right) => getModuleSortOrder(left) - getModuleSortOrder(right),
+		)
+
+		const modules = []
+		for (const moduleKey of moduleKeys) {
+			const module = await prisma.module.create({
 				data: {
-					userId: user.id,
-					objectKey: userImage.objectKey,
+					name: getModuleName(moduleKey),
+					description: `Release bundle for ${packageDefinition.name} ${getModuleName(moduleKey)}.`,
+					sortOrder: getModuleSortOrder(moduleKey),
+					packageId: coursePackage.id,
+					topics: {
+						connect: packageDefinition.subjectAbbreviations.flatMap(
+							(abbreviation) =>
+								(
+									topicIdsBySubjectAndModule.get(
+										`${abbreviation}:${moduleKey}`,
+									) ?? []
+								).map((id) => ({ id })),
+						),
+					},
 				},
 			})
+
+			modules.push(module)
 		}
 
-		// Create notes with images
-		const notesCount = faker.number.int({ min: 1, max: 3 })
-		for (let noteIndex = 0; noteIndex < notesCount; noteIndex++) {
-			const note = await prisma.note.create({
-				select: { id: true },
+		const yearlyProduct = await prisma.yearlyProduct.create({
+			data: {
+				year: 2026,
+				displayName: `${packageDefinition.name} | GATE 2026`,
+				price: packageDefinition.price,
+				discountedPrice: packageDefinition.discountedPrice,
+				accessEndsAt: new Date('2027-02-06T23:59:59.999Z'),
+				packageId: coursePackage.id,
+			},
+		})
+
+		for (const batchTemplate of batchTemplates) {
+			const batch = await prisma.batch.create({
 				data: {
-					title: faker.lorem.sentence(),
-					content: faker.lorem.paragraphs(),
-					ownerId: user.id,
+					name: batchTemplate.name,
+					startDate: batchTemplate.startDate,
+					endDate: batchTemplate.endDate,
+					yearlyProductId: yearlyProduct.id,
 				},
 			})
 
-			// Add images to note
-			const noteImageCount = faker.number.int({ min: 1, max: 3 })
-			const selectedImages = faker.helpers.arrayElements(
-				noteImages,
-				noteImageCount,
-			)
 			await Promise.all(
-				selectedImages.map((noteImage) =>
-					prisma.noteImage.create({
+				modules.map((module) =>
+					prisma.batchModule.create({
 						data: {
-							noteId: note.id,
-							altText: noteImage.altText,
-							objectKey: noteImage.objectKey,
+							batchId: batch.id,
+							moduleId: module.id,
+							releaseDate: addDays(
+								batchTemplate.startDate,
+								Math.max(module.sortOrder - 1, 0) * 7,
+							),
 						},
 					}),
 				),
 			)
 		}
 	}
-	console.timeEnd(`👤 Created ${totalUsers} users...`)
+}
 
-	console.time(`🐨 Created admin user "kody"`)
+async function seed() {
+	console.log('🌱 Seeding...')
+	console.time(`🌱 Database has been seeded`)
 
-	const kodyImages = {
-		kodyUser: { objectKey: 'user/kody.png' },
-		cuteKoala: {
-			altText: 'an adorable koala cartoon illustration',
-			objectKey: 'kody-notes/cute-koala.png',
-		},
-		koalaEating: {
-			altText: 'a cartoon illustration of a koala in a tree eating',
-			objectKey: 'kody-notes/koala-eating.png',
-		},
-		koalaCuddle: {
-			altText: 'a cartoon illustration of koalas cuddling',
-			objectKey: 'kody-notes/koala-cuddle.png',
-		},
-		mountain: {
-			altText: 'a beautiful mountain covered in snow',
-			objectKey: 'kody-notes/mountain.png',
-		},
-		koalaCoder: {
-			altText: 'a koala coding at the computer',
-			objectKey: 'kody-notes/koala-coder.png',
-		},
-		koalaMentor: {
-			altText:
-				'a koala in a friendly and helpful posture. The Koala is standing next to and teaching a woman who is coding on a computer and shows positive signs of learning and understanding what is being explained.',
-			objectKey: 'kody-notes/koala-mentor.png',
-		},
-		koalaSoccer: {
-			altText: 'a cute cartoon koala kicking a soccer ball on a soccer field ',
-			objectKey: 'kody-notes/koala-soccer.png',
-		},
-	}
+	// console.time(`🔐 Created permissions and roles`)
+	// await seedPermissions()
+	// console.timeEnd(`🔐 Created permissions and roles`)
 
-	const githubUser = await insertGitHubUser(MOCK_CODE_GITHUB)
-
-	const kody = await prisma.user.create({
-		select: { id: true },
-		data: {
-			email: 'kody@kcd.dev',
-			username: 'kody',
-			name: 'Kody',
-			password: { create: createPassword('kodylovesyou') },
-			connections: {
-				create: {
-					providerName: 'github',
-					providerId: String(githubUser.profile.id),
-				},
-			},
-			roles: { connect: [{ name: 'admin' }, { name: 'user' }] },
-		},
-	})
-
-	await prisma.userImage.create({
-		data: {
-			userId: kody.id,
-			objectKey: kodyImages.kodyUser.objectKey,
-		},
-	})
-
-	// Create Kody's notes
-	const kodyNotes = [
-		{
-			id: 'd27a197e',
-			title: 'Basic Koala Facts',
-			content:
-				'Koalas are found in the eucalyptus forests of eastern Australia. They have grey fur with a cream-coloured chest, and strong, clawed feet, perfect for living in the branches of trees!',
-			images: [kodyImages.cuteKoala, kodyImages.koalaEating],
-		},
-		{
-			id: '414f0c09',
-			title: 'Koalas like to cuddle',
-			content:
-				'Cuddly critters, koalas measure about 60cm to 85cm long, and weigh about 14kg.',
-			images: [kodyImages.koalaCuddle],
-		},
-		{
-			id: '260366b1',
-			title: 'Not bears',
-			content:
-				"Although you may have heard people call them koala 'bears', these awesome animals aren't bears at all – they are in fact marsupials. A group of mammals, most marsupials have pouches where their newborns develop.",
-			images: [],
-		},
-		{
-			id: 'bb79cf45',
-			title: 'Snowboarding Adventure',
-			content:
-				"Today was an epic day on the slopes! Shredded fresh powder with my friends, caught some sick air, and even attempted a backflip. Can't wait for the next snowy adventure!",
-			images: [kodyImages.mountain],
-		},
-		{
-			id: '9f4308be',
-			title: 'Onewheel Tricks',
-			content:
-				"Mastered a new trick on my Onewheel today called '180 Spin'. It's exhilarating to carve through the streets while pulling off these rad moves. Time to level up and learn more!",
-			images: [],
-		},
-		{
-			id: '306021fb',
-			title: 'Coding Dilemma',
-			content:
-				"Stuck on a bug in my latest coding project. Need to figure out why my function isn't returning the expected output. Time to dig deep, debug, and conquer this challenge!",
-			images: [kodyImages.koalaCoder],
-		},
-		{
-			id: '16d4912a',
-			title: 'Coding Mentorship',
-			content:
-				"Had a fantastic coding mentoring session today with Sarah. Helped her understand the concept of recursion, and she made great progress. It's incredibly fulfilling to help others improve their coding skills.",
-			images: [kodyImages.koalaMentor],
-		},
-		{
-			id: '3199199e',
-			title: 'Koala Fun Facts',
-			content:
-				"Did you know that koalas sleep for up to 20 hours a day? It's because their diet of eucalyptus leaves doesn't provide much energy. But when I'm awake, I enjoy munching on leaves, chilling in trees, and being the cuddliest koala around!",
-			images: [],
-		},
-		{
-			id: '2030ffd3',
-			title: 'Skiing Adventure',
-			content:
-				'Spent the day hitting the slopes on my skis. The fresh powder made for some incredible runs and breathtaking views. Skiing down the mountain at top speed is an adrenaline rush like no other!',
-			images: [kodyImages.mountain],
-		},
-		{
-			id: 'f375a804',
-			title: 'Code Jam Success',
-			content:
-				'Participated in a coding competition today and secured the first place! The adrenaline, the challenging problems, and the satisfaction of finding optimal solutions—it was an amazing experience. Feeling proud and motivated to keep pushing my coding skills further!',
-			images: [kodyImages.koalaCoder],
-		},
-		{
-			id: '562c541b',
-			title: 'Koala Conservation Efforts',
-			content:
-				"Joined a local conservation group to protect koalas and their habitats. Together, we're planting more eucalyptus trees, raising awareness about their endangered status, and working towards a sustainable future for these adorable creatures. Every small step counts!",
-			images: [],
-		},
-		{
-			id: 'f67ca40b',
-			title: 'Game day',
-			content:
-				"Just got back from the most amazing game. I've been playing soccer for a long time, but I've not once scored a goal. Well, today all that changed! I finally scored my first ever goal.\n\nI'm in an indoor league, and my team's not the best, but we're pretty good and I have fun, that's all that really matters. Anyway, I found myself at the other end of the field with the ball. It was just me and the goalie. I normally just kick the ball and hope it goes in, but the ball was already rolling toward the goal. The goalie was about to get the ball, so I had to charge. I managed to get possession of the ball just before the goalie got it. I brought it around the goalie and had a perfect shot. I screamed so loud in excitement. After all these years playing, I finally scored a goal!\n\nI know it's not a lot for most folks, but it meant a lot to me. We did end up winning the game by one. It makes me feel great that I had a part to play in that.\n\nIn this team, I'm the captain. I'm constantly cheering my team on. Even after getting injured, I continued to come and watch from the side-lines. I enjoy yelling (encouragingly) at my team mates and helping them be the best they can. I'm definitely not the best player by a long stretch. But I really enjoy the game. It's a great way to get exercise and have good social interactions once a week.\n\nThat said, it can be hard to keep people coming and paying dues and stuff. If people don't show up it can be really hard to find subs. I have a list of people I can text, but sometimes I can't find anyone.\n\nBut yeah, today was awesome. I felt like more than just a player that gets in the way of the opposition, but an actual asset to the team. Really great feeling.\n\nAnyway, I'm rambling at this point and really this is just so we can have a note that's pretty long to test things out. I think it's long enough now... Cheers!",
-			images: [kodyImages.koalaSoccer],
-		},
-	]
-
-	for (const noteData of kodyNotes) {
-		const note = await prisma.note.create({
-			select: { id: true },
-			data: {
-				id: noteData.id,
-				title: noteData.title,
-				content: noteData.content,
-				ownerId: kody.id,
-			},
-		})
-
-		for (const image of noteData.images) {
-			await prisma.noteImage.create({
-				data: {
-					noteId: note.id,
-					altText: image.altText,
-					objectKey: image.objectKey,
-				},
-			})
-		}
-	}
-
-	console.timeEnd(`🐨 Created admin user "kody"`)
+	console.time(`📚 Created catalogue and content`)
+	await seedCatalogue()
+	console.timeEnd(`📚 Created catalogue and content`)
 
 	console.timeEnd(`🌱 Database has been seeded`)
 }
