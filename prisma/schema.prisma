@@ -292,6 +292,8 @@ model Topic {
   sortOrder   Int     @default(0)
   isActive    Boolean @default(true)
 
+  part Int @default(1) // for multi-part topics like "Module 1 – Topic 1.1", "Module 1 – Topic 1.2", etc.
+
   subject   Subject @relation(fields: [subjectId], references: [id])
   subjectId String
 
