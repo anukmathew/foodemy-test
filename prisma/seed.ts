@@ -391,6 +391,7 @@ async function seedCatalogue() {
 						videoLectures: {
 							create: buildVideoLectures(entry, index),
 						},
+						part: 1,
 					},
 					select: { id: true },
 				})

@@ -178,6 +178,7 @@ CREATE TABLE "Topic" (
     "description" TEXT,
     "sortOrder" INTEGER NOT NULL DEFAULT 0,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
+    "part" INTEGER NOT NULL DEFAULT 1,
     "subjectId" TEXT NOT NULL,
     CONSTRAINT "Topic_subjectId_fkey" FOREIGN KEY ("subjectId") REFERENCES "Subject" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
