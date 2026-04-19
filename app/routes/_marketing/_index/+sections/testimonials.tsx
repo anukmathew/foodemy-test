@@ -19,37 +19,32 @@ const testimonials = [
 			'Foodemy’s online coaching helped me understand complex concepts easily.',
 		name: 'Aarav Sharma',
 		title: 'GATE 2022 Topper',
-		image:
-			'/resources/images?src=/img/index/students/1.jpg&format=webp&format=webp&w=200&h=200',
+		image: '/img/index/students/1.jpg',
 	},
 	{
 		quote: 'I highly recommend Foodemy for GATE preparation.',
 		name: 'Vikram Singh',
 		title: 'GATE 2022 Topper',
-		image:
-			'/resources/images?src=/img/index/students/2.jpg&format=webp&format=webp&w=200&h=200',
+		image: '/img/index/students/2.jpg',
 	},
 	{
 		quote:
 			'The study material provided by Foodemy was comprehensive and easy to follow.',
 		name: 'Priya Gupta',
 		title: 'GATE 2022 Topper',
-		image:
-			'/resources/images?src=/img/index/students/3.jpg&format=webp&format=webp&w=200&h=200',
+		image: '/img/index/students/3.jpg',
 	},
 	{
 		quote:
 			'I was able to clear my doubts instantly with the help of Foodemy’s faculty.',
 		name: 'Rohan Verma',
 		title: 'GATE 2022 Topper',
-		image:
-			'/resources/images?src=/img/index/students/4.jpg&format=webp&format=webp&w=200&h=200',
+		image: '/img/index/students/4.jpg',
 	},
 	{
 		quote: 'Foodemy’s mock tests were very helpful in my preparation.',
 		name: 'Sneha Patel',
 		title: 'GATE 2022 Topper',
-		image:
-			'/resources/images?src=/img/index/students/5.jpg&format=webp&format=webp&w=200&h=200',
+		image: '/img/index/students/1.jpg',
 	},
 ]

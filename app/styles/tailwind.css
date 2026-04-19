@@ -118,10 +118,10 @@
 
 @theme inline {
 	/* Font configuration */
-	--font-sans: 'Plus Jakarta Sans', sans-serif; /* Body text */
-	--font-serif: 'Merriweather', sans-serif; /* Headings */
+	--font-sans: 'Plus Jakarta Sans Variable', sans-serif; /* Body text */
+	--font-serif: 'Merriweather Variable', sans-serif; /* Headings */
 	--font-display:
-		'Montserrat', serif; /* Optional display font for special headings */
+		'Montserrat Variable', serif; /* Optional display font for special headings */
 	--font-mono:
 		ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
 		'DejaVu Sans Mono', monospace;

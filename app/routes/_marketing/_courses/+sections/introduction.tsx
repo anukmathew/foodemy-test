@@ -1,4 +1,5 @@
 import { motion } from 'motion/react'
+import { Img } from 'openimg/react'
 
 export default function Introduction() {
 	return (
@@ -15,8 +16,10 @@ export default function Introduction() {
 				viewport={{ once: true }}
 			>
 				<div className="hidden flex-1/2 overflow-hidden rounded-2xl lg:block">
-					<img
-						src={`/resources/images?src=/img/courses/introduction.jpg&format=webp&w=1200&h=800&fit=cover`}
+					<Img
+						src={'/img/courses/introduction.jpg'}
+						width={1200}
+						height={800}
 						alt="Hero Image"
 						className="h-full w-full object-cover"
 					/>

@@ -181,10 +181,10 @@ const VIDEO_CARDS = [
 ]
 
 const STUDY_MATERIALS = [
-	'/resources/images?src=/img/index/notes/note1.webp&format=webp&w=700&h=1000',
-	'/resources/images?src=/img/index/notes/note2.webp&format=webp&w=700&h=1000',
-	'/resources/images?src=/img/index/notes/note3.webp&format=webp&w=700&h=1000',
-	'/resources/images?src=/img/index/notes/note4.webp&format=webp&w=700&h=1000',
+	'/img/index/notes/note1.webp',
+	'/img/index/notes/note2.webp',
+	'/img/index/notes/note3.webp',
+	'/img/index/notes/note4.webp',
 ]
 
 const Noise = () => {
@@ -192,7 +192,8 @@ const Noise = () => {
 		<div
 			className="absolute inset-0 h-full w-full scale-[1.2] transform mask-[radial-gradient(#fff,transparent,75%)] opacity-10"
 			style={{
-				backgroundImage: 'url(/img/index/noise.webp)',
+				backgroundImage:
+					'url(/resources/images?src=/img/index/noise.webp&format=webp)',
 				backgroundSize: '30%',
 			}}
 		></div>

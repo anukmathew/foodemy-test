@@ -92,7 +92,7 @@ export default function PricingCard({
 				</ul>
 			</div>
 			{/* The Icon should animate when the button is hovered */}
-			<Link to={course.slug} className="no-underline">
+			<Link to={course.slug} className="no-underline" prefetch="intent">
 				<motion.div
 					className={
 						'bg-primary hover:bg-primary/80 text-primary-foreground flex justify-center gap-2 rounded-lg px-4 py-2 font-bold transition'
@@ -113,7 +113,8 @@ export default function PricingCard({
 			<div className="text-muted-foreground flex flex-col">
 				{course.accessEndsAt ? (
 					<span className="text-xs">
-						Course valid until {course.accessEndsAt.toLocaleDateString()}.
+						Course valid until {course.accessEndsAt.toLocaleDateString('en-GB')}
+						.
 					</span>
 				) : null}
 				{newBatch.length > 0 ? (

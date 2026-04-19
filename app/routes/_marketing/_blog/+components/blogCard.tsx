@@ -9,6 +9,7 @@ import {
 } from '#app/components/ui/card.tsx'
 import { Icon } from '#app/components/ui/icon.tsx'
 import { type BlogFrontmatter } from '#app/utils/custom-utils/mdx.server.ts'
+import { Img } from 'openimg/react'
 
 export function BlogCard({
 	blog,
@@ -26,11 +27,10 @@ export function BlogCard({
 			<Card className="border-muted group flex h-full flex-col overflow-hidden rounded-4xl">
 				<div className="relative rounded-4xl pt-4 pr-4 pl-4">
 					<div className="overflow-hidden rounded-2xl">
-						<img
-							src={
-								`/resources/images?src=${blog.bannerImage}&format=webp&w=1200&h=800&fit=cover` ||
-								'/placeholder.svg?height=360&width=640&query=blog-cover'
-							}
+						<Img
+							src={`/resources/images?src=${blog.bannerImage}`}
+							width={1200}
+							height={800}
 							alt={`${blog.title} cover`}
 							className="h-56 w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
 						/>

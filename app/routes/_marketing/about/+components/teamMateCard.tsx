@@ -5,6 +5,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from '#app/components/ui/tooltip.tsx'
+import { Img } from 'openimg/react'
 import TeammateDetailsDialog from './teammate-details-dialog'
 
 export default function TeamMateCard({
@@ -59,8 +60,11 @@ export default function TeamMateCard({
 						type="button"
 						className="block w-full cursor-pointer md:pointer-events-none"
 					>
-						<img
+						<Img
 							src={image}
+							width={800}
+							height={800}
+							fit="cover"
 							alt={name}
 							className="h-full w-full object-cover grayscale transition duration-300"
 						/>

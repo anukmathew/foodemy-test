@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'motion/react'
+import { Img } from 'openimg/react'
 
 export default function VisionMission() {
 	const prefersReducedMotion = useReducedMotion()
@@ -25,8 +26,11 @@ export default function VisionMission() {
 				variants={sectionVariants}
 			>
 				<div className="hidden h-96 flex-1/2 overflow-hidden rounded-2xl shadow-xl grayscale transition-all duration-300 group-hover:grayscale-0 sm:flex">
-					<img
-						src="/resources/images?src=/img/about-us/vision-mission.jpg&format=webp&w=1200&h=800&fit=cover"
+					<Img
+						src="/img/about-us/vision-mission.jpg"
+						width={1200}
+						height={800}
+						fit="cover"
 						alt="Vision and Mission"
 						className="h-full w-full object-cover transition duration-300 hover:scale-105"
 					/>

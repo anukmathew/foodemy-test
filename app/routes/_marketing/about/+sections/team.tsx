@@ -86,32 +86,28 @@ const TeamMembers = [
 	{
 		name: 'Dr. Parinder Kaur',
 		edu: 'Ph.D. | ICT-Mumbai',
-		image:
-			'/resources/images?src=/img/about-us/teammates/prk.webp&format=webp&w=800&h=800&fit=cover',
+		image: '/img/about-us/teammates/prk.webp',
 		bio: 'The "reel" reason people don’t scroll past us. A PhD holder who can teach, present, and market without making it look like effort, she handles social media while making the rest of us question our screen presence. If it looks smooth and engaging online, chances are she had something to do with it.',
 		linkedIn: 'https://www.linkedin.com/in/parinderkaur',
 	},
 	{
 		name: 'Shabari Sreenivas',
 		edu: 'M.Tech | NIFTEM-K',
-		image:
-			'/resources/images?src=/img/about-us/teammates/sbs.webp&format=webp&w=800&h=800&fit=cover',
+		image: '/img/about-us/teammates/sbs.webp',
 		bio: 'The team’s built-in motivator and full-time conversation starter. Knows exactly what to ask, when to ask it, and how to keep customers convinced. Handles HR and relationships—which makes sense, because he’s been managing people (and situations) long before it became official. If there’s a tricky conversation, it usually ends up with him.',
 		linkedIn: 'https://www.linkedin.com/in/shabarisreenivas',
 	},
 	{
 		name: 'Dr. Smriti Chaturvedi',
 		edu: 'Ph.D. | ICT-Mumbai',
-		image:
-			'/resources/images?src=/img/about-us/teammates/smc.webp&format=webp&w=800&h=800&fit=cover',
+		image: '/img/about-us/teammates/smc.webp',
 		bio: 'A PhD holder in Food Biotechnology. Doesn’t say much, doesn’t get into every discussion—and clearly prefers it that way. But when work comes her way, it gets done properly, on time, and without the chaos everyone else seems to generate. Quietly reliable, which in this team is actually a big deal.',
 		linkedIn: 'https://www.linkedin.com/in/smriti-chaturvedi',
 	},
 	{
 		name: 'Anu K Mathew',
 		edu: 'M.Tech | NIFTEM-K',
-		image:
-			'/resources/images?src=/img/about-us/teammates/akm.webp&format=webp&w=800&h=800&fit=cover',
+		image: '/img/about-us/teammates/akm.webp',
 		bio: 'Accidental food technologist, accidental developer, and now permanently responsible for “why isn’t this working?” Built this website, fixes the bugs, and silently judges everyone’s “small change” requests. If it works, he built it. If it breaks… also him.',
 		// linkedIn: 'https://www.linkedin.com/in/anukmathew',
 	},

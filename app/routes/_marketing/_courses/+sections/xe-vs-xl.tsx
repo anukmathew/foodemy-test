@@ -89,7 +89,7 @@ export default function XEvsXL({ data }: XEvsXLProps = statements) {
 	const tableData = data ?? statements.data ?? []
 	return (
 		<div className="w-full">
-			<h4 className="text-primary-foreground mb-6 text-center text-2xl font-bold">
+			<h4 className="text-secondary mb-6 text-center text-2xl font-bold">
 				Your guide to choosing XE or XL
 			</h4>
 			<div className="mx-auto max-w-4xl">

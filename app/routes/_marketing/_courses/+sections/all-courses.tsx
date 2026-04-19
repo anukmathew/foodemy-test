@@ -29,18 +29,9 @@ export default function AllCourses({
 	}
 
 	return (
-		<section className="relative py-12 sm:py-36">
-			{/* Dreamy Sky Pink Glow */}
-			<div
-				className="absolute inset-0 z-0"
-				style={{
-					backgroundImage: `
-        radial-gradient(circle at 30% 70%, rgba(173, 216, 230, 0.35), transparent 60%),
-        radial-gradient(circle at 70% 30%, rgba(255, 182, 193, 0.4), transparent 60%)`,
-				}}
-			/>
+		<section className="from-primary-soft/30 bg-radial to-white py-12 shadow-xl inset-shadow-sm sm:py-36">
 			<motion.div
-				className="container flex w-full flex-col items-center gap-24 bg-[#fefcff]"
+				className="container flex w-full flex-col items-center gap-24"
 				initial={{ opacity: 0.0, y: -80 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				transition={{

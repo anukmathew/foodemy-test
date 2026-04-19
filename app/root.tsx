@@ -1,3 +1,5 @@
+import merriweatherLatin from '@fontsource-variable/merriweather/files/merriweather-latin-wght-normal.woff2?url'
+import montserratLatin from '@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2?url'
 import { OpenImgContextProvider } from 'openimg/react'
 import {
 	data,
@@ -41,8 +43,32 @@ import { makeTimings, time } from './utils/timing.server.ts'
 import { getToast } from './utils/toast.server.ts'
 import { useOptionalUser } from './utils/user.ts'
 
+// fonts import
+import '@fontsource-variable/merriweather/wght.css'
+import '@fontsource-variable/merriweather/wght-italic.css'
+import '@fontsource-variable/montserrat/wght.css'
+import '@fontsource-variable/montserrat/wght-italic.css'
+import '@fontsource-variable/plus-jakarta-sans/wght.css'
+import '@fontsource-variable/plus-jakarta-sans/wght-italic.css'
+
+//
+
 export const links: Route.LinksFunction = () => {
 	return [
+		{
+			rel: 'preload',
+			href: montserratLatin,
+			as: 'font',
+			type: 'font/woff2',
+			crossOrigin: 'anonymous' as const,
+		},
+		{
+			rel: 'preload',
+			href: merriweatherLatin,
+			as: 'font',
+			type: 'font/woff2',
+			crossOrigin: 'anonymous' as const,
+		},
 		// Preload svg sprite as a resource to avoid render blocking
 		{ rel: 'preload', href: iconsHref, as: 'image' },
 		{
@@ -52,21 +78,6 @@ export const links: Route.LinksFunction = () => {
 		},
 		{ rel: 'icon', type: 'image/svg+xml', href: faviconAssetUrl },
 		{ rel: 'apple-touch-icon', href: appleTouchIconAssetUrl },
-		{ rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-		{
-			rel: 'preconnect',
-			href: 'https://fonts.gstatic.com',
-			crossOrigin: 'anonymous' as const,
-		},
-		{
-			rel: 'stylesheet',
-			href: 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap',
-		},
-		{
-			rel: 'stylesheet',
-			href: 'https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap',
-		},
-
 		{
 			rel: 'manifest',
 			href: '/site.webmanifest',

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { cn } from '#app/utils/misc.tsx'
+import { Img } from 'openimg/react'
 
 export const InfiniteMovingTestimonials = ({
 	items,
@@ -99,9 +100,11 @@ export const InfiniteMovingTestimonials = ({
 							</span>
 							<div className="relative z-20 mt-6 flex flex-row items-center gap-2 opacity-70 grayscale duration-300 group-hover:opacity-100 group-hover:grayscale-0">
 								<div>
-									<img
+									<Img
 										src={item.image}
 										alt={item.name}
+										width={40}
+										height={40}
 										className="h-10 w-10 rounded-full"
 									/>
 								</div>

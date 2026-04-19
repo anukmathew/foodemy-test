@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { cn } from '#app/utils/misc.tsx'
+import { Img } from 'openimg/react'
 
 export const StudyMaterialsStack = ({
 	images,
@@ -89,7 +90,13 @@ export const StudyMaterialsStack = ({
 						className="group relative flex w-full max-w-full shrink-0 overflow-hidden rounded-2xl border border-zinc-200 bg-[linear-gradient(180deg,#fafafa,#f5f5f5)] dark:border-zinc-700 dark:bg-[linear-gradient(180deg,#27272a,#18181b)]"
 						key={image}
 					>
-						<img src={image} alt="" className="h-auto w-full flex-1" />
+						<Img
+							src={image}
+							width={700}
+							height={1000}
+							alt=""
+							className="h-auto w-full flex-1"
+						/>
 					</li>
 				))}
 			</ul>

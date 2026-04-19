@@ -1,4 +1,5 @@
 import { motion } from 'motion/react'
+import { Img } from 'openimg/react'
 
 export default function About() {
 	return (
@@ -38,8 +39,11 @@ export default function About() {
 					</p>
 				</div>
 				<div className="relative hidden w-full flex-1/2 rounded-2xl shadow-xl lg:flex">
-					<img
-						src="resources/images?src=/img/about-us/about-us.jpg&format=webp&w=1200&h=800&fit=cover"
+					<Img
+						src="/img/about-us/about-us.jpg"
+						width={1200}
+						height={800}
+						fit="cover"
 						alt="About Foodemy"
 						className="absolute z-10 h-full w-full -translate-x-8 translate-y-8 rounded-2xl object-cover"
 					/>

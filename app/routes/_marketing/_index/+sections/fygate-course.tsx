@@ -1,4 +1,5 @@
 import { motion } from 'motion/react'
+import { Img } from 'openimg/react'
 
 export default function WhatIsFygate() {
 	return (
@@ -17,10 +18,10 @@ export default function WhatIsFygate() {
 				<div className="relative hidden flex-1/2 lg:block">
 					{/* <div className="bg-primary-foreground absolute inset-0 -translate-x-6 -translate-y-6 rounded-2xl"></div> */}
 					<div className="relative overflow-hidden rounded-2xl">
-						<img
-							src={
-								'/resources/images?src=/img/index/about-img.webp&format=webp'
-							}
+						<Img
+							src={'/img/index/about-img.webp'}
+							width={1200}
+							height={800}
 							alt="Hero Image"
 							className="h-full w-full object-cover"
 						/>

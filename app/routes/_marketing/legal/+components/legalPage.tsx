@@ -16,7 +16,7 @@ export default function LegalPage({
 			<div className="flex flex-col items-center gap-4">
 				<span className="text-destructive text-sm font-bold">
 					Last updated on{' '}
-					{new Date(updatedOn).toLocaleDateString('en-US', {
+					{new Date(updatedOn).toLocaleDateString('en-GB', {
 						year: 'numeric',
 						month: 'long',
 						day: 'numeric',

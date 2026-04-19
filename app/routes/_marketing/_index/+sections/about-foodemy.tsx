@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
 import AccentBar from '#app/components/ui/accent-bar.tsx'
+import { Img } from 'openimg/react'
 
 function AboutValueItem({
 	title,
@@ -64,22 +65,28 @@ export default function AboutFoodemy() {
 				</div>
 				<div className="hidden grid-cols-2 grid-rows-2 gap-2 lg:grid">
 					<div className="row-span-2 overflow-hidden rounded-2xl">
-						<img
-							src="/resources/images?src=/img/index/about/about1.jpg&format=webp&w=800&h=1200&fit=contain"
+						<Img
+							src="/img/index/about/about1.jpg"
+							width={800}
+							height={1200}
 							alt=""
 							className="h-full object-cover transition duration-300 hover:scale-110"
 						/>
 					</div>
 					<div className="overflow-hidden rounded-2xl">
-						<img
-							src="/resources/images?src=/img/index/about/about2.jpg&format=webp&w=1200&h=800&fit=cover"
+						<Img
+							src="/img/index/about/about2.jpg"
+							width={1200}
+							height={800}
 							alt=""
 							className="h-full scale-125 object-cover transition duration-300 hover:scale-135"
 						/>
 					</div>
 					<div className="overflow-hidden rounded-2xl">
-						<img
-							src="/resources/images?src=/img/index/about/about3.jpg&format=webp&w=1200&h=800&fit=cover"
+						<Img
+							src="/img/index/about/about3.jpg"
+							width={1200}
+							height={800}
 							alt=""
 							className="h-full object-cover transition duration-300 hover:scale-110"
 						/>

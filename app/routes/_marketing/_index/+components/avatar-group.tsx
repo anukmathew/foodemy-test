@@ -13,7 +13,7 @@ export function StudentsCount() {
 				<AvatarImage
 					src="/resources/images?src=/img/index/students/1.jpg&format=webp&w=200&h=200"
 					alt="@shadcn"
-				/>
+				></AvatarImage>
 				<AvatarFallback>CN</AvatarFallback>
 			</Avatar>
 			<Avatar>

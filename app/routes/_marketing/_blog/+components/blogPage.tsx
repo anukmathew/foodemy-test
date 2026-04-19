@@ -1,3 +1,4 @@
+import { Img } from 'openimg/react'
 import { useEffect, useRef, useState } from 'react'
 import {
 	EmailShareButton,
@@ -20,7 +21,6 @@ import { Separator } from '#app/components/ui/separator.tsx'
 import '#app/styles/blog.css'
 import { type BlogFrontmatter } from '#app/utils/custom-utils/mdx.server.ts'
 import { cn } from '#app/utils/misc.tsx'
-import { BlogImage } from './blogImage.tsx'
 
 export default function BlogPage({
 	frontMatter,
@@ -86,13 +86,12 @@ export default function BlogPage({
 				</div>
 
 				<div className="container flex max-h-96 items-center justify-center overflow-hidden rounded-2xl bg-red-50 p-0">
-					<BlogImage
+					<Img
 						src={frontMatter.bannerImage}
 						alt={frontMatter.title}
 						width={1200}
 						height={800}
 						fit="contain"
-						format="webp"
 						className="w-full object-contain"
 					/>
 				</div>

@@ -4,6 +4,7 @@ import { DotBackground } from '#app/components/aceternity/dot-background.tsx'
 import { TypewriterEffectSmooth } from '#app/components/aceternity/typewriter-effect.tsx'
 import { Icon } from '#app/components/ui/icon.tsx'
 import { StudentsCount } from '../+components/avatar-group'
+import { Img } from 'openimg/react'
 
 export default function Hero() {
 	return (
@@ -60,10 +61,13 @@ export default function Hero() {
 					>
 						<div className="bg-primary-soft/90 rotate-2 overflow-hidden rounded-4xl p-3 shadow-lg">
 							<div className="-rotate-2 overflow-hidden rounded-4xl bg-white p-4">
-								<img
-									src={
-										'/resources/images?src=/img/index/hero.png&w=900&h=1200&format=webp&fit=cover'
-									}
+								<Img
+									src={'/img/index/hero.png'}
+									width={900}
+									height={1200}
+									isAboveFold
+									fetchPriority="high"
+									fit="cover"
 									alt="Hero Image"
 									className="max-h-[calc(60dvh)] rounded-2xl object-cover"
 								/>

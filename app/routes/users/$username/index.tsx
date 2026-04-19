@@ -31,7 +31,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 	invariantResponse(user, 'User not found', { status: 404 })
 
-	return { user, userJoinedDisplay: user.createdAt.toLocaleDateString() }
+	return { user, userJoinedDisplay: user.createdAt.toLocaleDateString('en-GB') }
 }
 
 export default function ProfileRoute() {
